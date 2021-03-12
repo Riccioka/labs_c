@@ -8,7 +8,7 @@ int main()
     scanf("%d", &a);
 
     p = 1;
-    while (a > 0)
+    for(int i=1; i<=3; i++)
     {
         p *= a % 10;
         a /= 10;
