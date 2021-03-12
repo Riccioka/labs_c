@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int main()
 {
@@ -9,9 +10,7 @@ int main()
     scanf("%f", &a);
     printf("Введите время движения: ");
     scanf("%f", &t);
-
-    s = v*t + (a * pow(t,2)) / 2;
-
+    s = v * t + (a * pow(t, 2)) / 2;
     printf("Перемещение = %f", s);
     return 0;
 }
