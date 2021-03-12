@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int main()
 {
@@ -11,10 +12,8 @@ int main()
     scanf("%f", &b);
     printf("Введите угол между ними: ");
     scanf("%f", &c);
-
     s = (1.0/2) * a * b * sinf(c);
     printf("Sinus - %f",sinf(c));
-    printf("Площадь тревргольника = %f", s);
+    printf("Площадь треугольника = %f", s);
     return 0;
-
 }
