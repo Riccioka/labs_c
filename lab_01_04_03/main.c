@@ -1,20 +1,14 @@
 #include <stdio.h>
-#include <math.h>
 
 int main()
 {
-    int a, p;
-
-    printf("Число = ");
+    int a, p, f, s, t;
     scanf("%d", &a);
-    a = abs(a);
     p = 1;
-    for(int i = 1; i <= 3; i++)
-    {
-        p *= a % 10;
-        a /= 10;
-    }
-
-    printf("Произведение цифр = %d", p);
+    t = a % 10;
+    s = a / 10 % 10;
+    f = a / 100;
+    p = t * s * f;
+    printf("%d", p);
     return 0;
 }
