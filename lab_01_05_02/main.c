@@ -15,7 +15,7 @@ int main()
         return 1;
     int tmp;
     if (n == 0)
-        printf("Number = %s", "0");
+        printf("%d", 0);
     else
     {
         while (n - 1 > 0)
@@ -25,7 +25,7 @@ int main()
             f0 = tmp;
             n -= 1;
         }
-        printf("Number = %d", f1);
+        printf("%d", f1);
     }
     return 0;
 }
