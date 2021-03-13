@@ -10,7 +10,7 @@ int main(void)
     double xp, yp, xa, ya, xb, yb, xc, yc;
     int res;
 
-    if (scanf("%lf %lf %lf %lf %lf %lf %lf %lf", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
+    if (scanf("%lf %lf %lf %lf %lf %lf %lf %lf", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8.0)
         return 1;
     if (((func(xp, yp, xa, ya, xb, yb) > 0.0) && (func(xp, yp, xb, yb, xc, yc) > 0.0) && (func(xp, yp, xc, yc, xa, ya) > 0.0)) || ((func(xp, yp, xa, ya, xb, yb) < 0.0) && (func(xp, yp, xb, yb, xc, yc) < 0.0) && (func(xp, yp, xc, yc, xa, ya) < 0.0)))
         res = 0;
