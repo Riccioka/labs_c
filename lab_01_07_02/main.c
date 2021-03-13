@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-double arcsinus(x, eps)
+double arcsinus(double x, double eps)
 {
     double s = x;
     double atmp = x;
@@ -18,16 +18,12 @@ double arcsinus(x, eps)
 int main()
 {
     double x, e, f, s, d1, d2;
-    int r = scanf("%lf", &x);
-    if (r == 0 || (x > 1) || (x < -1))
-        return 1;
-    r = scanf("%lf", &e);
-    if (r == 0)
+    if (scanf("%lf", &x) == 0 || scanf("%lf", &e) == 0 || x > 1 || x < -1)
         return 1;
     f = asin(x);
     s = arcsinus(x, e);
     d1 = fabs(f - s);
-    d2 = d1 / f;
-    printf("%.12lf %.12lf %.12lf %.12lf", s, f, d1, d2);
+    d2 = d1 / fabs(f);
+    printf("%lf %lf %lf %lf", s, f, d1, d2);
     return 0;
 }
