@@ -9,7 +9,7 @@ double f()
     while (x >= 0)
     {
         scanf("%lf", &x);
-        if(x >= 0)
+        if (x >= 0)
         {
             pr *= (x + n);
             n++;
