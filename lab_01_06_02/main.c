@@ -8,6 +8,7 @@ int func(float xp, float yp, float xa, float ya, float xb, float yb)
 int main()
 {
     double xp, yp, xa, ya, xb, yb, xc, yc;
+    int res;
     int r = scanf("%lf", &xp);
     if (r == 0)
         return 1;
@@ -33,12 +34,13 @@ int main()
     if (r == 0)
         return 1;
     if ((func(xp, yp, xa, ya, xb, yb) > 0) && (func(xp, yp, xb, yb, xc, yc) > 0) && (func(xp, yp, xc, yc, xa, ya) > 0))
-        printf("0");
+        res = 0;
     else if ((func(xp, yp, xa, ya, xb, yb) < 0) && (func(xp, yp, xb, yb, xc, yc) < 0) && (func(xp, yp, xc, yc, xa, ya) < 0))
-        printf("0");
+        res = 0;
     else if ((func(xp, yp, xa, ya, xb, yb)) * (func(xp, yp, xb, yb, xc, yc)) * (func(xp, yp, xc, yc, xa, ya)) == 0)
-        printf("1");
+        res = 1;
     else
-        printf("2");
+        res = 2;
+    printf("%d", res);
     return 0;
 }
