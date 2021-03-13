@@ -38,12 +38,15 @@ int main()
 {
     unsigned int num = 0;
     if (scanf("%u", &num) <= 0)
+    {
         printf("Error: invalid number.");
+        return 1;
+    }
     else
     {
         printf("Result: ");
         print_bits(swap_bits(num));
-        printf("\n");
     }
+    printf("\n");
     return 0;
 }
