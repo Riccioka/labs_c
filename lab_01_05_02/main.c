@@ -2,7 +2,7 @@
 #include <locale.h>
 int f(f0, f1)
 {
-    return  f0 + f1;
+    return  (f0 + f1);
 }
 
 int main()
@@ -10,10 +10,9 @@ int main()
     int n, f0, f1, el;
     f0 = el = 0;
     f1 = 1;
-    printf("Input n: \n");
     scanf("%d", &n);
     if (n < 0)
-        printf("Неверный ввод");
+        return 1;
     int tmp;
     if (n == 0)
         printf("Number = %s", "0");
