@@ -21,7 +21,7 @@ int main()
     if (scanf("%lf", &x) == 0 || scanf("%lf", &e) == 0 || x > 1 || x < -1)
         return 1;
     f = asin(x);
-    if (f == 0)
+    if (e < 0)
         return 1;
     s = arcsinus(x, e);
     d1 = fabs(f - s);
