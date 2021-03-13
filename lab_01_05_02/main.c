@@ -1,31 +1,23 @@
 #include <stdio.h>
-#include <locale.h>
-int f(f0, f1)
+
+int fibb(int n)
 {
-    return f0 + f1;
+    int pp = 0;
+    int p = 1;
+    int cur = 0;
+    while (n-- > 0)
+    {
+        cur = pp + p;
+        pp = p;
+        p = cur;
+    }
+    return pp;
 }
 
-int main()
+int main(void)
 {
-    int n, f0, f1, el;
-    f0 = el = 0;
-    f1 = 1;
+    int n = 0;
     scanf("%d", &n);
-    if (n < 0)
-        return 1;
-    int tmp;
-    if (n == 0)
-        printf("%d", 0);
-    else
-    {
-        while (n - 1 > 0)
-        {
-            tmp = f1;
-            f1 = f(f0, f1);
-            f0 = tmp;
-            n -= 1;
-        }
-        printf("%d", f1);
-    }
+    printf("%d", fibb(n));
     return 0;
 }
