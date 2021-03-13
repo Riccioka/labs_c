@@ -2,7 +2,7 @@
 #include <locale.h>
 int f(f0, f1)
 {
-    return  f0 + f1;
+    return f0 + f1;
 }
 
 int main()
