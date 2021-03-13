@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int func(double xp, double yp, double xa, double ya, double xb, double yb)
+double func(double xp, double yp, double xa, double ya, double xb, double yb)
 {
     return (xa - xp) * (yb - ya) - (xb - xa) * (ya - yp);
 }
