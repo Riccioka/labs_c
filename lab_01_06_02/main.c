@@ -1,15 +1,14 @@
 #include <stdio.h>
 
-float func(float xp, float yp, float xa, float ya, float xb, float yb)
+int func(int xp, int yp, int xa, int ya, int xb, int yb)
 {
     return (xa - xp) * (yb - ya) - (xb - xa) * (ya - yp);
 }
 
 int main()
 {
-    float xp, yp, xa, ya, xb, yb, xc, yc;
-    int res;
-    if (scanf("%f %f %f %f %f %f %f %f", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
+    int xp, yp, xa, ya, xb, yb, xc, yc, res;
+    if (scanf("%d %d %d %d %d %d %d %d", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
         return -1;
     if (((func(xp, yp, xa, ya, xb, yb) > 0) && (func(xp, yp, xb, yb, xc, yc) > 0) && (func(xp, yp, xc, yc, xa, ya) > 0)) || ((func(xp, yp, xa, ya, xb, yb) < 0) && (func(xp, yp, xb, yb, xc, yc) < 0) && (func(xp, yp, xc, yc, xa, ya) < 0)))
         res = 0;
