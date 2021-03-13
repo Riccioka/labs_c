@@ -2,7 +2,7 @@
 
 int func(float xp, float yp, float xa, float ya, float xb, float yb)
 {
-    return  ((xa - xp) * (yb-ya) - (xb - xa) * (ya - yp));
+    return (xa - xp) * (yb - ya) - (xb - xa) * (ya - yp);
 }
 
 int main()
