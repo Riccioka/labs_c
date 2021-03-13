@@ -2,7 +2,7 @@
 #include <locale.h>
 int f(f0, f1)
 {
-    return  (f0 + f1);
+    return  f0 + f1;
 }
 
 int main()
@@ -21,7 +21,7 @@ int main()
         while (n - 1 > 0)
         {
             tmp = f1;
-            f1 = f(f0,f1);
+            f1 = f(f0, f1);
             f0 = tmp;
             n -= 1;
         }
