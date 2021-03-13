@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-double arcSin(double x, double eps)
+double arcSin(x, eps)
 {
     double s = x;
     double atmp = x;
@@ -18,11 +18,9 @@ double arcSin(double x, double eps)
 int main()
 {
     double x, e, f, s, d1, d2;
-    printf("Введите x: ");
     int r = scanf("%lf", &x);
     if (r == 0 || (x > 1) || (x < -1))
         return 1;
-    printf("Введите e: ");
     r = scanf("%lf", &e);
     if(r == 0)
         return 1;
