@@ -1,20 +1,15 @@
 #include <stdio.h>
+#include <math.h>
 
 int main()
 {
-    setbuf(stdout, 0);
-    setbuf(stdin, 0);
-    float a, b, c, s;
-    printf("Введите первую сторону треугольника: ");
-    scanf("%f", &a);
-    printf("Введите вторую сторону: ");
-    scanf("%f", &b);
-    printf("Введите угол между ними: ");
-    scanf("%f", &c);
-
-    s = (1.0/2) * a * b * sinf(c);
-    printf("Sinus - %f",sinf(c));
-    printf("Площадь тревргольника = %f", s);
+    double a, b, c, s;
+    scanf("%lf", &a);
+    scanf("%lf", &b);
+    scanf("%lf", &c);
+    c = c * M_PI / 180;
+    s = (1.0 / 2) * a * b * sin(c);
+    printf("%lf", sin(c));
+    printf("%lf", s);
     return 0;
-
 }
