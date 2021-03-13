@@ -11,59 +11,35 @@ int main()
     printf("Введите абсциссу P: ");
     int r = scanf("%lf", &xp);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     printf("Введите ординату P: ");
     r = scanf("%lf", &yp);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     printf("Введите абсциссу А: ");
     r = scanf("%lf", &xa);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     printf("Введите ординату А: ");
     r = scanf("%lf", &ya);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     printf("Введите абсциссу B: ");
     r = scanf("%lf", &xb);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     printf("Введите ординату B: ");
     r = scanf("%lf", &yb);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     printf("Введите абсциссу C: ");
     r = scanf("%lf", &xc);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     printf("Введите ординату C: ");
     r = scanf("%lf", &yc);
     if (r == 0)
-    {
-        printf("Неверный ввод");
         return 1;
-    }
     if ((func(xp, yp,xa, ya, xb, yb) > 0) &&
         (func(xp, yp,xb, yb, xc, yc) > 0) && (func(xp, yp,xc, yc, xa, ya) > 0))
         printf("0");
