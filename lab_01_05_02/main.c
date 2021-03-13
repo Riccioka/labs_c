@@ -19,6 +19,8 @@ int main(void)
     int n = 0;
     if (scanf("%d", &n) <= 0 || n < 0)
         return 1;
-    printf("%d", fibb(n));
+    if ((n = fibb(n)) < 0)
+        return 1;
+    printf("%d", n);
     return 0;
 }
