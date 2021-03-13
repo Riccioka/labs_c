@@ -37,7 +37,7 @@ void print_bits(unsigned int num)
 int main()
 {
     unsigned int num = 0;
-    if (scanf("%u", &num) < 0)
+    if (scanf("%u", &num) <= 0)
         printf("Error: invalid number.");
     else
     {
