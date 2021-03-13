@@ -3,17 +3,16 @@
 
 int main()
 {
-    setbuf(stdout, 0);
-    setbuf(stdin, 0);
-    float a, b, c, s;
+    double a, b, c, s;
     printf("Введите первую сторону треугольника: ");
-    scanf("%f", &a);
+    scanf("%lf", &a);
     printf("Введите вторую сторону: ");
-    scanf("%f", &b);
+    scanf("%lf", &b);
     printf("Введите угол между ними: ");
-    scanf("%f", &c);
-    s = (1.0/2) * a * b * sinf(c);
-    printf("Sinus - %f",sinf(c));
-    printf("Площадь треугольника = %f", s);
+    scanf("%lf", &c);
+    c = c * M_PI / 180;
+    s = (1.0/2) * a * b * sin(c);
+    printf("Sinus - %lf", sin(c));
+    printf("Площадь треугольника = %lf", s);
     return 0;
 }

@@ -4,6 +4,8 @@ int main()
 {
     int a, p, f, s, t;
     scanf("%d", &a);
+    if (a < 0)
+        a = -a;
     p = 1;
     t = a % 10;
     s = a / 10 % 10;

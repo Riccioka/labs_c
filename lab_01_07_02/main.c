@@ -18,19 +18,23 @@ int main()
 {
     double x, e, f, s, d1, d2;
     printf("Введите x: ");
-    scanf("%lf", &x);
-    if ((x > 1) || (x < -1))
+    int r = scanf("%lf", &x);
+    if (r == 0 || (x > 1) || (x < -1))
     {
         printf("Неверный ввод");
+        return 1;
     }
     printf("Введите e: ");
-    scanf("%lf", &e);
+    r = scanf("%lf", &e);
+    if(r == 0)
+    {
+        printf("Неверный ввод");
+        return 1;
+    }
     f = asin(x);
     s = arcSin(x, e);
-    d1 = fabs(f-s);
+    d1 = fabs(f - s);
     d2 = d1 / f;
     printf("%.12lf %.12lf %.12lf %.12lf", s, f, d1, d2);
-
-
     return 0;
 }
