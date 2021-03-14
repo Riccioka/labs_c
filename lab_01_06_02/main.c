@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int func(long xp, long yp, long xa, long ya, long xb, long yb, long xc, long yc)
+int func(long xa, long ya, long xb, long yb, long xc, long yc, long xp, long yp)
 {
     long ch = (((xp - xa) * (yb - ya) - (yp - ya) * (xb - xa)) * ((xc - xa) * (yb - ya) - (yc - ya) * (xb - xa)));
     if (ch > 0)
@@ -14,15 +14,15 @@ int func(long xp, long yp, long xa, long ya, long xb, long yb, long xc, long yc)
 
 int main()
 {
-    long xp, yp, xa, ya, xb, yb, xc, yc, d1, d2, d3;
+    long xa, ya, xb, yb, xc, yc, xp, yp, d1, d2, d3;
     int res;
-    if (scanf("%ld %ld %ld %ld %ld %ld %ld %ld", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
+    if (scanf("%ld %ld %ld %ld %ld %ld %ld %ld", &xa, &ya, &xb, &yb, &xc, &yc,  &xp, &yp) < 8)
         return -1;
     if ((xc - xa) * (yb - ya) == (yc - ya) * (xb - xa))
         return -1;
-    d1 = func(xp, yp, xa, ya, xb, yb, xc, yc);
-    d2 = func(xp, yp, xb, yb, xc, yc, xa, ya);
-    d3 = func(xp, yp, xc, yc, xa, ya, xb, yb);
+    d1 = func(xa, ya, xb, yb, xc, yc, xp, yp);
+    d2 = func(xb, yb, xc, yc, xa, ya, xp, yp);
+    d3 = func(xc, yc, xa, ya, xb, yb, xp, yp);
     if ((d1 == 0) && (d2 == 0) && (d3 == 0))
         res = 0;
     else if ((d1 == 1) || (d2 == 1) || (d3 == 1))
