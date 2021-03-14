@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 double func(double xp, double yp, double xa, double ya, double xb, double yb)
 {
@@ -13,7 +14,7 @@ int main()
         return -1;
     if (((func(xp, yp, xa, ya, xb, yb) > 0.0) && (func(xp, yp, xb, yb, xc, yc) > 0.0) && (func(xp, yp, xc, yc, xa, ya) > 0.0)) || ((func(xp, yp, xa, ya, xb, yb) < 0.0) && (func(xp, yp, xb, yb, xc, yc) < 0.0) && (func(xp, yp, xc, yc, xa, ya) < 0.0)))
         res = 0;
-    else if ((func(xp, yp, xa, ya, xb, yb) == 0.0) || (func(xp, yp, xb, yb, xc, yc) == 0.0) || (func(xp, yp, xc, yc, xa, ya) == 0.0))
+    else if ((fabs(func(xp, yp, xa, ya, xb, yb) - 0) < 0.0000001) || (fabs(func(xp, yp, xb, yb, xc, yc) - 0) < 0.0000001) || (fabs(func(xp, yp, xc, yc, xa, ya) - 0) < 0.0000001))
         res = 1;
     else
         res = 2;
