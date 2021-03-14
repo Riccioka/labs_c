@@ -1,33 +1,31 @@
 #include <stdio.h>
 #include <math.h>
 
-double func(double xp, double yp, double xa, double ya, double xb, double yb)
+int func(long xp, long yp, long xa, long ya, long xb, long yb, long xc, long yc)
 {
-    return (xa - xp) * (yb - ya) - (xb - xa) * (ya - yp);
-}
-
-int check_side(double d1, double d2, double d3)
-{
-    int zeros = (fabs(d1 - 0) < 0.0000001) + (fabs(d2 - 0) < 0.0000001) + (fabs(d3 - 0) < 0.0000001);
-    return (zeros == 2 ||
-        (zeros == 1 && (d1 * d2 > 0 || d1 * d3 > 0 || d3 * d2 > 0)));
+    long ch = ((xp - xa) * (yb - ya) - (yp - ya) * (xb - xa) * (xc - xa) * (yb - ya) - (yc - ya) * (xb - xa));
+    if (ch > 0)
+        return 0;
+    else if (ch == 0)
+        return 1;
+    else
+        return 2;
 }
 
 int main()
 {
-    double xp, yp, xa, ya, xb, yb, xc, yc;
-    double d1, d2, d3;
+    long xp, yp, xa, ya, xb, yb, xc, yc, d1, d2, d3;
     int res;
-    if (scanf("%lf %lf %lf %lf %lf %lf %lf %lf", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
+    if (scanf("%ld %ld %ld %ld %ld %ld %ld %ld", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
         return -1;
-    if ((fabs((xa - xc) * (yb - yc) - (xb - xc) * (ya - yc)) - 0) < 0.0000001)
+    if ((xc - xa) * (yb - ya) == (yc - ya) * (xb - xa))
         return -1;
-    d1 = func(xp, yp, xa, ya, xb, yb);
-    d2 = func(xp, yp, xb, yb, xc, yc);
-    d3 = func(xp, yp, xc, yc, xa, ya);
-    if ((d1 > 0.0 && d2 > 0.0 && d3 > 0.0) || (d1 < 0.0 && d2 < 0.0 && d3 < 0.0))
+    d1 = func(xp, yp, xa, ya, xb, yb, xc, yc);
+    d2 = func(xp, yp, xb, yb, xc, yc, xa, ya);
+    d3 = func(xp, yp, xc, yc, xa, ya, xb, yb);
+    if ((d1 == 0) && (d2 == 0) && (d3 == 0))
         res = 0;
-    else if (check_side(d1, d2, d3))
+    else if ((d1 == 1) || (d2 == 1) || (d3 == 1))
         res = 1;
     else
         res = 2;
