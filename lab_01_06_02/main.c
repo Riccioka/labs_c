@@ -18,8 +18,7 @@ int main()
     double xp, yp, xa, ya, xb, yb, xc, yc;
     double d1, d2, d3;
     int res;
-    if (scanf("%lf %lf %lf %lf %lf %lf %lf %lf",
-        &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
+    if (scanf("%lf %lf %lf %lf %lf %lf %lf %lf", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) < 8)
         return -1;
     if ((fabs((xa - xc) * (yb - yc) - (xb - xc) * (ya - yc)) - 0) < 0.0000001)
         return -1;
