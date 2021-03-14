@@ -16,7 +16,7 @@ int main()
 {
     long xp, yp, xa, ya, xb, yb, xc, yc, d1, d2, d3;
     int res;
-    if (scanf("%ld %ld %ld %ld %ld %ld %ld %ld", &xp, &yp, &xa, &ya, &xb, &yb, &xc, &yc) != 8)
+    if ((scanf("%ld %ld", &xp, &yp) != 2) || (scanf("%ld %ld", &xa, &ya) != 2) || (scanf("%ld %ld", &xb, &yb) != 2) || (scanf("%ld %ld", &xc, &yc) != 2))
         return -1;
     if ((xc - xa) * (yb - ya) == (yc - ya) * (xb - xa))
         return -1;
