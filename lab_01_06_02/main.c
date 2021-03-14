@@ -6,9 +6,9 @@ double func(double xp, double yp, double xa, double ya, double xb, double yb)
     return (xa - xp) * (yb - ya) - (xb - xa) * (ya - yp);
 }
 
-double check_side(double d1, double d2, double d3)
+int check_side(double d1, double d2, double d3)
 {
-    int zeros = (d1 == 0.0) + (d2 == 0.0) + (d3 == 0.0);
+    int zeros = (fabs(d1 - 0) < 0.0000001) + (fabs(d2 - 0) < 0.0000001) + (fabs(d3 - 0) < 0.0000001);
     return (zeros == 2 ||
         (zeros == 1 && (d1 * d2 > 0 || d1 * d3 > 0 || d3 * d2 > 0)));
 }
