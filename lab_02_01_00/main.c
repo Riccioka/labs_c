@@ -15,14 +15,20 @@ int main()
     int i, n;
     int a[10];
     if (scanf("%d", &n) == 0)
+    {
+        printf("invalid size value");
         return 1;
-    if (n > 10)
+    }
+    if ((n > 10) || (n < 0))
+    {
+        printf("invalid size value");
         return 1;
+    }
     for (i = 0; i < n; i++)
     {
         if (scanf("%d", &a[i]) == 0)
         {
-            printf("Error");
+            printf("invalid element value");
             return 1;
         }
     }
