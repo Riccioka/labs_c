@@ -19,7 +19,7 @@ int main()
         printf("invalid size value");
         return 1;
     }
-    if ((n > 10) || (n < 0))
+    if ((n > 10) || (n <= 0))
     {
         printf("invalid size value");
         return 1;
