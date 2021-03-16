@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-long sum(long *a, int n)
+long long sum(long *a, int n)
 {
-    long s = 0;
+    long long s = 0;
     int i;
     for (i = 0; i < n; i++)
         if (a[i] % 2 == 0)
@@ -17,6 +17,12 @@ int main()
     if (scanf("%d", &n) == 0)
     {
         printf("invalid size value");
+        return 1;
+    }
+    if ((n > 10) || (n < 0))
+    {
+        printf("invalid size value");
+        return 1;
     }
     for (i = 0; i < n; i++)
     {
@@ -26,6 +32,6 @@ int main()
             return 1;
         }
     }
-    printf("%ld ", sum(a, n));
+    printf("%lld ", sum(a, n));
     return 0;
 }
