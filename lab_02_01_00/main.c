@@ -1,5 +1,15 @@
 #include <stdio.h>
 
+int count(long *a, int n)
+{
+    int c = 0;
+    int i;
+    for (i = 0; i < n; i++)
+        if (a[i] % 2 == 0)
+            c += 1;
+    return c;
+}
+
 long sum(long *a, int n)
 {
     long s = 0;
@@ -12,26 +22,26 @@ long sum(long *a, int n)
 
 int main()
 {
-    int i, n;
+    int i, n, c;
     long a[10];
     if (scanf("%d", &n) == 0)
     {
         printf("invalid size value");
-        return 1;
     }
-    if ((n > 10) || (n < 0))
-    {
-        printf("invalid size value");
+    c = count(a, n);
+    if (c == 0)
         return 1;
-    }
-    for (i = 0; i < n; i++)
+    else
     {
-        if (scanf("%ld", &a[i]) == 0)
+        for (i = 0; i < n; i++)
         {
-            printf("invalid element value");
-            return 1;
+            if (scanf("%ld", &a[i]) == 0)
+            {
+                printf("invalid element value");
+                return 1;
+            }
         }
+        printf("%ld", sum(a, n));
+        return 0;
     }
-    printf("%ld ", sum(a, n));
-    return 0;
 }
