@@ -45,7 +45,7 @@ int main()
             j += 1;
         }
     }
-    for (i = 0; i < j + 1; i++)
-        printf("%ld", b[i]);
+    for (i = 0; i < j; i++)
+        printf("%ld\n", b[i]);
     return 0;
 }
