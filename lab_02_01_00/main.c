@@ -4,7 +4,7 @@ long long sum(long long a, long long *s)
 {
     if (a % 2 == 0)
         *s += a;
-    return s;
+    return *s;
 }
 
 int main()
