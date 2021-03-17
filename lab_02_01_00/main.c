@@ -1,12 +1,9 @@
 #include <stdio.h>
 
-long long sum(long long *a, int n)
+long long sum(long long a, long long *s)
 {
-    long long s = 0;
-    int i;
-    for (i = 0; i < n; i++)
-        if (a[i] % 2 == 0)
-            s += a[i];
+    if (a % 2 == 0)
+        *s += a;
     return s;
 }
 
@@ -14,6 +11,7 @@ int main()
 {
     int i, n;
     long long a[10];
+    long long s = 0;
     if (scanf("%d", &n) == 0)
     {
         printf("invalid size value");
@@ -26,12 +24,13 @@ int main()
     }
     for (i = 0; i < n; i++)
     {
-        if (scanf("%lld", &a[i]) == 0)
+        if (scanf("%lld", &a[i]) <= 0)
         {
             printf("invalid element value");
             return 1;
         }
+        sum(a[i], &s);
     }
-    printf("%lld ", sum(a, n));
+    printf("%lld ", s);
     return 0;
 }
