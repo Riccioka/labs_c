@@ -36,5 +36,5 @@ int main()
         sum(a[i], &s);
     }
     printf("%lld ", s);
-    return s == 0;
+    return 0;
 }

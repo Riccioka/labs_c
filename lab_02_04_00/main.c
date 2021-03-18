@@ -47,6 +47,8 @@ int main(void)
     long long a[10];
 
     n = read_arr(&a[0], size);
+    if (n == 0)
+        return 1;
     bubble_sort(a, n);
     print_arr(&a[0], n);
     return 100 * (n == size);

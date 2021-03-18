@@ -40,5 +40,5 @@ int main()
         b[j++] = a[i];
     }
     print_arr(&b[0], j);
-    return n == j;
+    return 0;
 }
