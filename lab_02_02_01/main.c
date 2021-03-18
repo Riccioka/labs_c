@@ -37,5 +37,5 @@ int main()
     }
     for (i = 0; i < j; i++)
         printf("%lld ", b[i]);
-    return 0;
+    return j == 0;
 }
