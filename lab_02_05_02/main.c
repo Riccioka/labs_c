@@ -45,9 +45,8 @@ long long spec_sum(long long *beg, long long *end)
 
 int main(void)
 {
-    const int size = 10;
     long long n = 0;
-    long long a[size];
+    long long a[10];
 
     if (scanf("%lld", &n) <= 0 || n > 10 || n < 0 || read_arr(&a[0], n))
         return 1;
