@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
 
 long long sum(long long a, long long *s)
 {
@@ -30,7 +30,7 @@ int main()
             printf("invalid element value");
             return 1;
         }
-        if ((abs(a[i]) + s) > (pow(2, 63) - 1))
+        if ((llabs(a[i]) + s) > (pow(2, 63) - 1))
         {
             printf("invalid element value");
             return 1;

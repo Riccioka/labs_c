@@ -19,7 +19,7 @@ int main()
     j = 0;
     long a[10];
     long b[10];
-    if (scanf("%d", &n) == 0)
+    if (scanf("%d", &n) == 0)       // проверка на ввод n
     {
         printf("invalid size value");
         return 1;
@@ -29,7 +29,7 @@ int main()
         printf("invalid size value");
         return 1;
     }
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++)     //ввод массива а
     {
         if (scanf("%ld", &a[i]) == 0)
         {
@@ -37,7 +37,7 @@ int main()
             return 1;
         }
     }
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++)     //копирование в массив b
     {
         if (simple(a[i]) == 0)
         {
@@ -45,7 +45,7 @@ int main()
             j += 1;
         }
     }
-    for (i = 0; i < j; i++)
+    for (i = 0; i < j; i++)         //вывод массива b
         printf("%ld\n", b[i]);
     return 0;
 }
