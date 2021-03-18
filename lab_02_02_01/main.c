@@ -15,11 +15,11 @@ int simple(int n)
 
 int main()
 {
-    int i, j, n;
-    j = 0;
-    long a[10];
-    long b[10];
-    if (scanf("%d", &n) == 0)       // проверка на ввод n
+    int i, j;
+    long long n;
+    long long a[10];
+    long long b[10];
+    if (scanf("%lld", &n) <= 0)       // проверка на ввод n
     {
         printf("invalid size value");
         return 1;
@@ -31,12 +31,13 @@ int main()
     }
     for (i = 0; i < n; i++)     //ввод массива а
     {
-        if (scanf("%ld", &a[i]) == 0)
+        if (scanf("%lld", &a[i]) <= 0)
         {
             printf("invalid element value");
             return 1;
         }
     }
+    j = 0;
     for (i = 0; i < n; i++)     //копирование в массив b
     {
         if (simple(a[i]) == 0)
@@ -46,6 +47,6 @@ int main()
         }
     }
     for (i = 0; i < j; i++)         //вывод массива b
-        printf("%ld\n", b[i]);
+        printf("%lld ", b[i]);
     return 0;
 }

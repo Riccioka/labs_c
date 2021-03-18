@@ -11,10 +11,11 @@ long long sum(long long a, long long *s)
 
 int main()
 {
-    int i, n;
+    int i;
+    long long n;
     long long a[10];
     long long s = 0;
-    if (scanf("%d", &n) == 0)
+    if (scanf("%lld", &n) <= 0)
     {
         printf("invalid size value");
         return 1;
