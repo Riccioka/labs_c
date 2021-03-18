@@ -49,5 +49,5 @@ int main(void)
     n = read_arr(&a[0], size);
     bubble_sort(a, n);
     print_arr(&a[0], n);
-    return 0;
+    return 100 * (n == size);
 }

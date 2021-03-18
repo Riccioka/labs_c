@@ -22,18 +22,20 @@ void swap(long long *a, long long *b)
     *b = t;
 }
 
-long long spec_sum(long long *b, long long *end)
+long long spec_sum(long long *beg, long long *end)
 {
     long long item = 1;
     long long sum = 0;
 
-    while (b != end && *b >= 0)
+    while (beg != end)
     {
-        item *= *b;
+        item *= *beg;
         sum += item;
-        ++b;
+        if (*beg < 0)
+            return (sum);
+        ++beg;
     }
-    return sum;
+    return (sum);
 }
 
 int main(void)
