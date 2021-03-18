@@ -16,7 +16,7 @@ int main()
     long long n;
     long long a[10];
     long long s = 0;
-    if (scanf("%lld", &n) <= 0  n > 10  n <= 0)
+    if (scanf("%lld", &n) <= 0 || n > 10 || n <= 0)
     {
         printf("invalid size value");
         return 1;
