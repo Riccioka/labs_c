@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <limits.h>
 
 long long sum(long long a, long long *s)
 {
@@ -15,12 +16,7 @@ int main()
     long long n;
     long long a[10];
     long long s = 0;
-    if (scanf("%lld", &n) <= 0)
-    {
-        printf("invalid size value");
-        return 1;
-    }
-    if ((n > 10) || (n <= 0))
+    if (scanf("%lld", &n) <= 0  n > 10  n <= 0)
     {
         printf("invalid size value");
         return 1;
@@ -32,7 +28,7 @@ int main()
             printf("invalid element value");
             return 1;
         }
-        if ((llabs(a[i]) + s) > (pow(2, 63) - 1))
+        if (llabs(a[i]) + s > INT_MAX)
         {
             printf("invalid element value");
             return 1;
