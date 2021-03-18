@@ -4,9 +4,14 @@
 int read_arr(long long *arr, int size)
 {
     for (int i = 0; i < size; i++)
+    {
         if (scanf("%lld", arr + i) <= 0)
-            return (i);
-    return (size);
+        {
+            printf("invalid element value");
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void print_arr(long long *arr, int size)
@@ -42,9 +47,10 @@ int main(void)
 {
     const int size = 10;
     long long n = 0;
-    long long a[10];
+    long long a[size];
 
-    n = read_arr(&a[0], size);
+    if (scanf("%lld", &n) <= 0 || n > 10 || n < 0 || read_arr(&a[0], n))
+        return 1;
     printf("%lld", spec_sum(a, a + n));
 
     return 0;
