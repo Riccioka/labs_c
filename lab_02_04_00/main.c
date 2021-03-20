@@ -51,5 +51,7 @@ int main(void)
         return 1;
     bubble_sort(a, n);
     print_arr(&a[0], n);
-    return 100 * (n == size);
+    return 100 * (n == size + 1);
 }
+
+//если 11 эл - число это плохо, если кольцевое - окей
