@@ -3,10 +3,10 @@
 
 int read_arr(long long *arr, int size)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size + 1; i++)
         if (scanf("%lld", arr + i) <= 0)
             return (i);
-    return (size);
+    return (100);
 }
 
 void print_arr(long long *arr, int size)
@@ -43,15 +43,24 @@ void bubble_sort(long long *arr, int size)
 int main(void)
 {
     const int size = 10;
+    int f = 1;
     long long n = 0;
     long long a[10];
 
     n = read_arr(&a[0], size);
     if (n == 0)
         return 1;
+    if (n == 100)
+    {
+        n = size;
+        f = 0;
+    }
     bubble_sort(a, n);
     print_arr(&a[0], n);
-    return 100 * (n == size + 1);
+    if (f == 0)
+        return 100;
+    else
+        return 0;
 }
 
 //если 11 эл - число это плохо, если кольцевое - окей
