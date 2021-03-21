@@ -36,8 +36,11 @@ int main()
         if (s != sum(a[i], &s))
             k = 1;
     }
-    if (k != 1)
+    if (k == 1)
+    {
         printf("no one");
+        return 1;
+    }
     printf("%d ", s);
     return 0;
 }
