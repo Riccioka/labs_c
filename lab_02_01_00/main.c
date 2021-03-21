@@ -33,10 +33,12 @@ int main()
             printf("invalid element value");
             return 1;
         }
-        if (s != sum(a[i], &s))
+        int s1 = s;
+        sum(a[i], &s);
+        if (s1 != s)
             k = 1;
     }
-    if (k == 1)
+    if (k == 0)
     {
         printf("no one");
         return 1;
