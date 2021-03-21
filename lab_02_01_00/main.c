@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <limits.h>
 
 int sum(int a, int *s)
@@ -14,7 +15,7 @@ int main()
     int n;
     int a[10];
     int s = 0;
-    if (scanf("%d", &n) <= 0 || n > 10 || n <= 0)
+    if (scanf("%d", &n) != 1 || n > 10 || n <= 0)
     {
         printf("invalid size value");
         return 1;
