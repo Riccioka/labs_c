@@ -12,10 +12,10 @@ int sum(int a, int *s)
 
 int main()
 {
-    int i;
-    int n;
+    int n, i;
     int a[10];
     int s = 0;
+    int k = 0;
     if (scanf("%d", &n) != 1 || n > 10 || n <= 0)
     {
         printf("invalid size value");
@@ -33,8 +33,11 @@ int main()
             printf("invalid element value");
             return 1;
         }
-        sum(a[i], &s);
+        if (s != sum(a[i], &s))
+            k = 1;
     }
+    if (k != 1)
+        printf("no one");
     printf("%d ", s);
     return 0;
 }
