@@ -4,7 +4,8 @@ int isprime(int n)
 {
     if (n > 1)
     {
-        for (int i = 2; i * i < n; i++)
+//        for (int i = 2; i * i < n; i++)
+        for (int i = 2; i < n; i++)
             if (n % i == 0)
                 return 1;
         return 0;
@@ -19,6 +20,7 @@ int main()
     int n;
     int a[10];
     int b[10];
+    int k = 0;
 
     if (scanf("%d", &n) <= 0 || n > 10 || n < 0)
     {
@@ -37,7 +39,15 @@ int main()
     for (i = 0; i < n; i++)
     {
         if (isprime(a[i]) == 0)
+        {
+            k = 1;
             b[j++] = a[i];
+        }
+    }
+    if (k == 0)
+    {
+        printf("no one");
+        return 1;
     }
     for (i = 0; i < j; i++)
         printf("%d ", b[i]);
