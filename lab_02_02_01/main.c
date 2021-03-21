@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int isprime(long long n)
+int isprime(int n)
 {
     if (n > 1)
     {
@@ -16,18 +16,18 @@ int isprime(long long n)
 int main()
 {
     int i, j;
-    long long n;
-    long long a[10];
-    long long b[10];
+    int n;
+    int a[10];
+    int b[10];
 
-    if (scanf("%lld", &n) <= 0 || n > 10 || n < 0)
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 0)
     {
         printf("invalid size value");
         return 1;
     }
     for (i = 0; i < n; i++)
     {
-        if (scanf("%lld", &a[i]) <= 0)
+        if (scanf("%d", &a[i]) <= 0)
         {
             printf("invalid element value");
             return 1;
@@ -40,6 +40,6 @@ int main()
             b[j++] = a[i];
     }
     for (i = 0; i < j; i++)
-        printf("%lld ", b[i]);
+        printf("%d ", b[i]);
     return 0;
 }

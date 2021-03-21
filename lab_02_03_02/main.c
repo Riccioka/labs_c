@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 
-int read_arr(long long *arr, int size)
+int read_arr(int *arr, int size)
 {
     for (int i = 0; i < size; i++)
     {
-        if (scanf("%lld", arr + i) <= 0)
+        if (scanf("%d", arr + i) <= 0)
         {
             printf("invalid element value");
             return 1;
@@ -14,20 +14,20 @@ int read_arr(long long *arr, int size)
     return 0;
 }
 
-void print_arr(long long *arr, int size)
+void print_arr(int *arr, int size)
 {
     for (int i = 0; i < size; ++i)
-        printf("%lld ", arr[i]);
+        printf("%d ", arr[i]);
 }
 
 int main()
 {
     int j = 0;
-    long long n = 0;
-    long long a[10];
-    long long b[10];
+    int n = 0;
+    int a[10];
+    int b[10];
 
-    if (scanf("%lld", &n) <= 0 || n > 10 || n < 0 || read_arr(&a[0], n))
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 0 || read_arr(&a[0], n))
         return 1;
     for (int i = 0; i < n; ++i)
     {
