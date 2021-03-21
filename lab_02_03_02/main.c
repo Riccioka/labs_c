@@ -26,6 +26,7 @@ int main()
     int n = 0;
     int a[10];
     int b[10];
+    int k = 0;
 
     if (scanf("%d", &n) <= 0 || n > 10 || n < 0 || read_arr(&a[0], n))
         return 1;
@@ -35,9 +36,17 @@ int main()
         {
             int temp = (int)sqrt(a[i]);
             if (temp * temp == a[i])
+            {
+                k += 1;
                 continue;
+            }
         }
         b[j++] = a[i];
+    }
+    if (k == n)
+    {
+        printf("error");
+        return 1;
     }
     print_arr(&b[0], j);
     return 0;
