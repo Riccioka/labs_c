@@ -35,7 +35,9 @@ int main()
         }
         int s1 = s;
         sum(a[i], &s);
-        if ((s1 != s) && (a[i] != 0))
+        if ((s1 == s) && (a[i] != 0) && (k == 0))
+            k = 0;
+        else
             k = 1;
     }
     if (k == 0)
