@@ -38,11 +38,11 @@ int main()
         if (s1 != s)
             k = 1;
     }
-    if (k == 0)
-    {
-        printf("no one");
-        return 1;
-    }
+//    if (k == 0)
+//    {
+//        printf("no one");
+//        return 1;
+//    }
     printf("%d ", s);
     return 0;
 }
