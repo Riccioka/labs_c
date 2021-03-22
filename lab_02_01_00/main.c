@@ -15,7 +15,7 @@ int main()
     int n, i;
     int a[10];
     int s = 0;
-    int k = 0;
+//    int k = 0;
     if (scanf("%d", &n) != 1 || n > 10 || n <= 0)
     {
         printf("invalid size value");
@@ -35,8 +35,8 @@ int main()
         }
         int s1 = s;
         sum(a[i], &s);
-        if (s1 != s)
-            k = 1;
+//        if (s1 != s)
+//            k = 1;
     }
 //    if (k == 0)
 //    {
