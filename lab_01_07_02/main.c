@@ -5,7 +5,7 @@ double arcsinus(double x, double eps)
 {
     double s = x;
     double atmp = x;
-    int n = 0;
+    int n = 2;
 
     while (fabs(atmp) > eps)
     {
