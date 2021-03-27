@@ -9,7 +9,7 @@ double arcsinus(double x, double eps)
 
     while (fabs(atmp) > eps)
     {
-        atmp *= atmp * atmp * (n - 1) * (n - 1) / (n * (n + 1));
+        atmp *= x * x * (n - 1) * (n - 1) / (n * (n + 1));
         s += atmp;
         n += 2;
     }
