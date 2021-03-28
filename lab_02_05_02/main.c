@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 
-int read_arr(long long *arr, int size)
+int read_arr(long long *arr, long long *end)
 {
-    for (int i = 0; i < size; i++)
+    for (; arr < end; arr++)
     {
-        if (scanf("%lld", arr + i) <= 0)
+        if (scanf("%lld", arr) <= 0)
         {
             printf("invalid element value");
             return 1;
@@ -14,10 +14,10 @@ int read_arr(long long *arr, int size)
     return 0;
 }
 
-void print_arr(long long *arr, int size)
+void print_arr(long long *arr, long long *end)
 {
-    for (int i = 0; i < size; ++i)
-        printf("%lld ", arr[i]);
+    for (; arr < end; arr++)
+        printf("%lld ", *arr);
 }
 
 void swap(long long *a, long long *b)
@@ -32,7 +32,7 @@ long long spec_sum(long long *beg, long long *end)
     long long item = 1;
     long long sum = 0;
 
-    while (beg != end)
+    while (beg < end)
     {
         item *= *beg;
         sum += item;
@@ -48,7 +48,7 @@ int main(void)
     long long n = 0;
     long long a[10];
 
-    if (scanf("%lld", &n) <= 0 || n > 10 || n < 0 || read_arr(&a[0], n))
+    if (scanf("%lld", &n) <= 0 || n > 10 || n < 0 || read_arr(a, a + n))
         return 1;
     printf("%lld", spec_sum(a, a + n));
 
