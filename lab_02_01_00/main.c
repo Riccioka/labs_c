@@ -3,6 +3,19 @@
 #include <stdlib.h>
 #include <limits.h>
 
+int read_arr(int *arr, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (scanf("%d", arr + i) <= 0)
+        {
+            printf("invalid element value");
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int sum(int a, int *s)
 {
     if (a % 2 == 0)
@@ -16,18 +29,13 @@ int main()
     int a[10];
     int s = 0;
     int k = 0;
-    if (scanf("%d", &n) != 1 || n > 10 || n <= 0)
+    if (scanf("%d", &n) != 1 || n > 10 || n <= 0 || read_arr(&a[0], n))
     {
         printf("invalid size value");
         return 1;
     }
     for (i = 0; i < n; i++)
     {
-        if (scanf("%d", &a[i]) <= 0)
-        {
-            printf("invalid element value");
-            return 1;
-        }
         if (abs(a[i]) + s > INT_MAX)
         {
             printf("invalid element value");

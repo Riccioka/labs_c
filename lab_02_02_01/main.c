@@ -1,5 +1,24 @@
 #include <stdio.h>
 
+int read_arr(int *arr, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (scanf("%d", arr + i) <= 0)
+        {
+            printf("invalid element value");
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void print_arr(int *arr, int size)
+{
+    for (int i = 0; i < size; ++i)
+        printf("%d ", arr[i]);
+}
+
 int isprime(int n)
 {
     for (int i = 2; i * i <= n; i++)
@@ -16,18 +35,10 @@ int main()
     int b[10];
     int k = 0;
 
-    if (scanf("%d", &n) <= 0 || n > 10 || n < 0)
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 0 || read_arr(&a[0], n))
     {
         printf("invalid size value");
         return 1;
-    }
-    for (i = 0; i < n; i++)
-    {
-        if (scanf("%d", &a[i]) <= 0)
-        {
-            printf("invalid element value");
-            return 1;
-        }
     }
     j = 0;
     for (i = 0; i < n; i++)
@@ -43,8 +54,7 @@ int main()
         printf("no one");
         return 1;
     }
-    for (i = 0; i < j; i++)
-        printf("%d ", b[i]);
+    print_arr(&b[0], j);
     return 0;
 }
 
