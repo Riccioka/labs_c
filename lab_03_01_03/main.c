@@ -19,7 +19,7 @@ void print_arr(int *arr, int size)
         printf("%d ", arr[i]);
 }
 
-//int first_diff(a)
+//int first_diff(int *i, int *j, int n, int m)
 //    int f = 0;
 //    for (j = 0; j < m - 1; j++)
 //        if (f == 0)
@@ -85,6 +85,6 @@ int main()
                 ind++;
             }
     }
-    print_arr(&b[0], j);
+    print_arr(&b[0], ind);
     return 0;
 }
