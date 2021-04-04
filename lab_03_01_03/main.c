@@ -37,7 +37,6 @@ int main()
 {
     int n = 0;
     int m = 0;
-    int ind = 0;
     int a[10][10];
     int b[100];
     int i, j, f, k;
