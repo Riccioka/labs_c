@@ -19,17 +19,19 @@ void print_arr(int *arr, int size)
         printf("%d ", arr[i]);
 }
 
-//int first_diff(int *i, int *j, int n, int m)
+//int first_diff(int *arr, int *i, int *j, int *n, int *m)
+//{
 //    int f = 0;
 //    for (j = 0; j < m - 1; j++)
 //        if (f == 0)
 //        {
-//            if (a[i][j] > a[i][j + 1])
+//            if (arr[i][j] > arr[i][j + 1])
 //                f = 2;
-//            if (a[i][j] < a[i][j + 1])
+//            if (arr[i][j] < arr[i][j + 1])
 //                f = 1;
 //        }
 //    return f;
+//}
 
 int main()
 {
@@ -59,6 +61,7 @@ int main()
         if (f != 0)
         {
             k = 0;
+            int ind_safe = ind;
             for (j = 0; j < m - 1; j++)
             {
                 if ((a[i][j] >= a[i][j + 1] && f == 2) || (a[i][j] <= a[i][j + 1] && f == 1))
@@ -69,6 +72,7 @@ int main()
                 else
                 {
                     k = 1;
+                    ind = ind_safe;
                     break;
                 }
             }
