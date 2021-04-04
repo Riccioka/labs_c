@@ -19,7 +19,7 @@ void print_arr(int *arr, int size)
         printf("%d ", arr[i]);
 }
 
-//int search()
+//int search(a)
 //    int f = 0;
 //    for (j = 0; j < m - 1; j++)
 //        if (f == 0)
