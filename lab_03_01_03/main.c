@@ -58,37 +58,22 @@ int main()
             }
             else
                 break;
-        if (f != 0)
+        k = 0;
+        for (j = 0; j < m - 1; j++)
         {
-            k = 0;
-            int ind_safe = ind;
-            for (j = 0; j < m - 1; j++)
+            if ((a[i][j] >= a[i][j + 1] && f == 2) || (a[i][j] <= a[i][j + 1] && f == 1))
+                k = 0;
+            else
             {
-                if ((a[i][j] >= a[i][j + 1] && f == 2) || (a[i][j] <= a[i][j + 1] && f == 1))
-                {
-                    b[ind] = a[i][j];
-                    ind++;
-                }
-                else
-                {
-                    k = 1;
-                    ind = ind_safe;
-                    break;
-                }
-            }
-            if (k == 0)
-            {
-                b[ind] = a[i][m - 1];
-                ind++;
+                k = 1;
+                break;
             }
         }
+        if (k == 0 || f == 0)
+            b[i] = 1;
         else
-            for (j = 0; j < m; j++)
-            {
-                b[ind] = a[i][j];
-                ind++;
-            }
+            b[i] = 0;
     }
-    print_arr(&b[0], ind);
+    print_arr(&b[0], n);
     return 0;
 }
