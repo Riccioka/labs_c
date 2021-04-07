@@ -41,10 +41,9 @@ int main()
     {
         chet = 0;
         nchet = 0;
-        i += kdop;
         for (j = 0; j < m; j++)
         {
-            int safe = a[i][j];
+            int safe = a[i + kdop][j];
             while (safe > 0)
             {
                 sum = safe % 10;
@@ -61,7 +60,7 @@ int main()
                         for (int q = 0; q < m; q++)
                             a[l][q] = a[l-1][q];
                     for (int q = 0; q < m; q++)
-                        a[i][q] = -1;
+                        a[i + kdop][q] = -1;
                     kdop++;
                     chet = 0;
                     nchet = 0;
