@@ -66,14 +66,22 @@ void task3(int a[10][10], int n, int m)
     }
 }
 
-void task4(int a[10][10], int n, int m)
+int task4(int a[10][10], int n, int m)
 {
+    int flag = 1;
     int min = INT_MAX;
+
     for (int i = 1; i < n; i++)
         for (int j = 0; j < i; j++)
-            if (a[i][j] < min && a[i][j] % 2 == 1)
+            if ((a[i][j] < min || flag) && a[i][j] % 2 == 1)
+            {
                 min = a[i][j];
+                flag = 0;
+            }
+    if (flag)
+        return 1;
     printf("%d", min);
+    return 0;
 }
 
 int main()
@@ -86,11 +94,10 @@ int main()
     if (scanf("%d", &n) <= 0 ||
         n > 10 || n < 1 ||
         scanf("%d", &m) <= 0 ||
-        m > 10 || m < 2 ||
+        m > 10 || m < 1 ||
         read_mat(a, n, m))
         return -1;
 
-    task4(a, n, m);
-
-    return 0;
+    return task4(a, n, m);
 }
+
