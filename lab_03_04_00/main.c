@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 int read_mat(int a[][10], int n, int m)
 {
@@ -8,6 +9,7 @@ int read_mat(int a[][10], int n, int m)
                 return 1;
     return 0;
 }
+
 
 void print_mat(int a[][10], int n, int m)
 {
@@ -27,14 +29,14 @@ int isprime(int n)
     return (n > 1);
 }
 
-void swap(int *a, int *b)
+int swap(int *a, int *b)
 {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void swap_rows(int a[][10], int m, int i, int j)
+int swap_rows(int a[][10], int m, int i, int j)
 {
     for (int k = 0; k < m; k++)
         swap(&a[i][k], &a[j][k]);
@@ -64,6 +66,16 @@ void task3(int a[10][10], int n, int m)
     }
 }
 
+void task4(int a[10][10], int n, int m)
+{
+    int min = INT_MAX;
+    for (int i = 1; i < n; i++)
+        for (int j = 0; j < i; j++)
+            if (a[i][j] < min && a[i][j] % 2 == 1)
+                min = a[i][j];
+    printf("%d", min);
+}
+
 int main()
 {
     int n = 0;
@@ -78,9 +90,7 @@ int main()
     if (read_mat(a, n, m))
         return -1;
 
-    task3(a, n, m);
-
-    print_mat(a, n, m);
+    task4(a, n, m);
 
     return 0;
 }
