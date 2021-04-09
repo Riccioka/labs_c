@@ -71,11 +71,11 @@ int main()
 
     int a[10][10];
 
-    if (scanf("%d %d", &n, &m) != 2 ||
-            n < 0 || m < 0 || n > 10 || m > 10)
-        return -1;
-
-    if (read_mat(a, n, m))
+    if (scanf("%d", &n) <= 0 ||
+        n > 10 || n < 1 ||
+        scanf("%d", &m) <= 0 ||
+        m > 10 || m < 2 ||
+        read_mat(a, n, m))
         return -1;
 
     task3(a, n, m);
