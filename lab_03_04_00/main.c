@@ -29,14 +29,14 @@ int isprime(int n)
     return (n > 1);
 }
 
-int swap(int *a, int *b)
+void swap(int *a, int *b)
 {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-int swap_rows(int a[][10], int m, int i, int j)
+void swap_rows(int a[][10], int m, int i, int j)
 {
     for (int k = 0; k < m; k++)
         swap(&a[i][k], &a[j][k]);
