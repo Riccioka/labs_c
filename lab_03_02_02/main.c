@@ -57,8 +57,10 @@ int main()
             if (chet == 1 && nchet == 1)
                 {
                     for (int l = n + kdop; l > i; l--)
+                    {
                         for (int q = 0; q < m; q++)
-                            a[l][q] = a[l-1][q];
+                            a[l][q] = a[l - 1][q];
+                    }
                     for (int q = 0; q < m; q++)
                         a[i + kdop][q] = -1;
                     kdop++;
