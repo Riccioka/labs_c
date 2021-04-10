@@ -19,17 +19,22 @@ void print_mat(int a[][10], int n, int m)
     }
 }
 
-void swap(int *a, int *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+//void swap(int *a, int *b)
+//{
+//    int temp = *a;
+//    *a = *b;
+//    *b = temp;
+//}
 
 void swap_rows(int a[][10], int m, int i, int j)
 {
     for (int k = 0; k < m; k++)
-        swap(&a[i][k], &a[j][k]);
+    {
+        int temp = a[i][k];
+        a[i][k] = a[j][k];
+        a[j][k] = temp;
+    }
+//        swap(&a[i][k], &a[j][k]);
 }
 
 
@@ -43,7 +48,7 @@ int main()
     if (scanf("%d", &n) <= 0 ||
         n > 10 || n < 1 ||
         scanf("%d", &m) <= 0 ||
-        m > 10 || m < 2 ||
+        m > 10 || m < 1 ||
         read_mat(a, n, m))
         return -1;
 
@@ -60,7 +65,10 @@ int main()
         {
             if (b[i] < b[j])
             {
-                swap(&b[i], &b[j]);
+                int temp = b[i];
+                b[i] = b[j];
+                b[j] = temp;
+//                swap(&b[i], &b[j]);
                 swap_rows(a, m, i, j);
             }
         }
