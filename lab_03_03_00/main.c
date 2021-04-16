@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 int read_mat(int a[][10], int n, int m)
 {
@@ -8,6 +9,7 @@ int read_mat(int a[][10], int n, int m)
                 return 1;
     return 0;
 }
+
 
 void print_mat(int a[][10], int n, int m)
 {
@@ -19,15 +21,25 @@ void print_mat(int a[][10], int n, int m)
     }
 }
 
+int isprime(int n)
+{
+    for (int i = 2; i * i <= n; i++)
+        if (n % i == 0)
+            return 0;
+    return (n > 1);
+}
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 void swap_rows(int a[][10], int m, int i, int j)
 {
     for (int k = 0; k < m; k++)
-    {
-        int temp = a[i][k];
-        a[i][k] = a[j][k];
-        a[j][k] = temp;
-    }
-//        swap(&a[i][k], &a[j][k]);
+        swap(&a[i][k], &a[j][k]);
 }
 
 int row_sum(int a[10][10], int n, int m, int i)
@@ -39,11 +51,18 @@ int row_sum(int a[10][10], int n, int m, int i)
     return sum;
 }
 
-int main()
+void task3(int a[10][10], int n, int m)
+{
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            if (row_sum(a, n, m, i) < row_sum(a, n, m, j))
+                swap_rows(a, m, i, j);
+}
+
+int main(void)
 {
     int n = 0;
     int m = 0;
-    int b[10];
     int a[10][10];
 
     if (scanf("%d", &n) <= 0 ||
@@ -52,13 +71,8 @@ int main()
         m > 10 || m < 1 ||
         read_mat(a, n, m))
         return -1;
-
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-            if (row_sum(a, n, m, i) < row_sum(a, n, m, j))
-                swap_rows(a, m, i, j);
-
+    task3(a, n, m);
     print_mat(a, n, m);
-
     return 0;
 }
+
