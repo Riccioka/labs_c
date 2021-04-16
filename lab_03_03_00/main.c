@@ -19,13 +19,6 @@ void print_mat(int a[][10], int n, int m)
     }
 }
 
-//void swap(int *a, int *b)
-//{
-//    int temp = *a;
-//    *a = *b;
-//    *b = temp;
-//}
-
 void swap_rows(int a[][10], int m, int i, int j)
 {
     for (int k = 0; k < m; k++)
@@ -37,6 +30,14 @@ void swap_rows(int a[][10], int m, int i, int j)
 //        swap(&a[i][k], &a[j][k]);
 }
 
+int row_sum(int a[10][10], int n, int m, int i)
+{
+    int sum = 0;
+
+    for (int j = 0; j < m; ++j)
+        sum += a[i][j];
+    return sum;
+}
 
 int main()
 {
@@ -53,26 +54,9 @@ int main()
         return -1;
 
     for (int i = 0; i < n; i++)
-    {
-        int sum = 0;
-        for (int j = 0; j < n; j++)
-            sum += a[i][j];
-        b[i] = sum;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (b[i] < b[j])
-            {
-                int temp = b[i];
-                b[i] = b[j];
-                b[j] = temp;
-//                swap(&b[i], &b[j]);
+        for (int j = 0; j < m; j++)
+            if (row_sum(a, n, m, i) < row_sum(a, n, m, j))
                 swap_rows(a, m, i, j);
-            }
-        }
-    }
 
     print_mat(a, n, m);
 
