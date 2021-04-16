@@ -21,14 +21,6 @@ void print_mat(int a[][10], int n, int m)
     }
 }
 
-int isprime(int n)
-{
-    for (int i = 2; i * i <= n; i++)
-        if (n % i == 0)
-            return 0;
-    return (n > 1);
-}
-
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -51,14 +43,6 @@ int row_sum(int a[10][10], int n, int m, int i)
     return sum;
 }
 
-void task3(int a[10][10], int n, int m)
-{
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-            if (row_sum(a, n, m, i) < row_sum(a, n, m, j))
-                swap_rows(a, m, i, j);
-}
-
 int main(void)
 {
     int n = 0;
@@ -71,7 +55,10 @@ int main(void)
         m > 10 || m < 1 ||
         read_mat(a, n, m))
         return -1;
-    task3(a, n, m);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            if (row_sum(a, n, m, i) < row_sum(a, n, m, j))
+                swap_rows(a, m, i, j);
     print_mat(a, n, m);
     return 0;
 }
