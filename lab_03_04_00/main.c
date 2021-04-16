@@ -38,7 +38,7 @@ int main()
 
     for (int i = 1; i < n; i++)
         for (int j = 0; j < i; j++)
-            if ((a[i][j] < min || flag) && a[i][j] % 2 == 1)
+            if ((a[i][j] < min || flag) && a[i][j] % 2)
             {
                 min = a[i][j];
                 flag = 0;
