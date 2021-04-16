@@ -57,7 +57,7 @@ int main(void)
         return -1;
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
-            if (row_sum(a, n, m, i) < row_sum(a, n, m, j))
+            if (row_sum(a, m, i) < row_sum(a, m, j))
                 swap_rows(a, m, i, j);
     print_mat(a, n, m);
     return 0;
