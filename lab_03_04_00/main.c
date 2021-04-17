@@ -28,8 +28,8 @@ int main()
 
     int a[10][10];
 
-    if (scanf("%d", &n) <= 0 || n > 10 || n < 3 ||
-        scanf("%d", &m) <= 0 || m > 10 || m < 3 ||
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 2 ||
+        scanf("%d", &m) <= 0 || m > 10 || m < 2 ||
         read_mat(a, n, m))
         return -1;
 
