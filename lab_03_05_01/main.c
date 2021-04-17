@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <limits.h>
+#include <stdlib.h>
 
 int read_mat(int a[][10], int n, int m)
 {
@@ -24,9 +24,9 @@ int row_sum(int a[10][10], int i, int j)
 {
     int sum = 0;
     int safe = a[i][j];
-    while (safe > 0)
+    while (safe)
     {
-        sum += safe % 10;
+        sum += abs(safe % 10);
         safe /= 10;
     }
     return sum;
@@ -79,13 +79,8 @@ int main()
             }
     if (flag)
         return -1;
-//    for (int i = 0; i < k; i++)
-//        printf("F = %d ", b[i]);
 
     shift(&b[0], k);
-
-//    for (int i = 0; i < k; i++)
-//        printf("%d ", b[i]);
 
     k = 0;
     for (int i = 0; i < n; i++)

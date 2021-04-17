@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <limits.h>
 
 void print_mat(int a[][10], int n, int m)
 {
