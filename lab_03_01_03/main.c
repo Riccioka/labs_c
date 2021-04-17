@@ -15,7 +15,7 @@ int read_arr(int a[10][10], int n, int m)
 
 void print_arr(int *arr, int size)
 {
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < size; i++)
         printf("%d ", arr[i]);
 }
 
@@ -27,8 +27,16 @@ int main()
     int b[100];
     int i, j, f, k;
 
-    if (scanf("%d", &n) <= 0 || n > 10 || n < 1 || scanf("%d", &m) <= 0 || m > 10 || m < 2 || read_arr(a, n, m))
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 1 || scanf("%d", &m) <= 0 || m > 10 || m < 1 || read_arr(a, n, m))
         return 1;
+
+    if (m == 1)
+    {
+        for (i = 0; i < n; i++)
+            b[i] = 0;
+        print_arr(&b[0], n);
+        return 0;
+    }
 
     for (i = 0; i < n; i++)
     {
