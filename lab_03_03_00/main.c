@@ -47,7 +47,7 @@ int main(void)
 {
     int n = 0;
     int m = 0;
-    int a[10][10];
+    int a[10][10] = { 0 };
 
     if (scanf("%d", &n) <= 0 ||
         n > 10 || n < 1 ||
