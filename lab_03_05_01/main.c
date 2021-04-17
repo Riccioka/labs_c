@@ -20,22 +20,37 @@ void print_mat(int a[][10], int n, int m)
     }
 }
 
-int row_sum(int a[10][10], int m, int i)
+int row_sum(int a[10][10], int i, int j)
 {
     int sum = 0;
-
-    for (int j = 0; j < m; ++j)
-        sum += a[i][j];
+    int safe = a[i][j];
+    while (safe > 0)
+    {
+        sum += safe % 10;
+        safe /= 10;
+    }
     return sum;
 }
 
 void shift(int *b, int k)
 {
-    b[k - 3] = b[0];
-    b[k - 2] = b[1];
-    b[k - 1] = b[2];
-    for (int i = 0; i < k - 3; i++)
-        b[i] = b[i + 3];
+    if (k == 2)
+    {
+        int safe = b[0];
+        b[0] = b[1];
+        b[1] = safe;
+    }
+    else if (k > 3)
+    {
+        int b0 = b[0];
+        int b1 = b[1];
+        int b2 = b[2];
+        for (int i = 0; i < k - 3; i++)
+            b[i] = b[i + 3];
+        b[k - 1] = b2;
+        b[k - 2] = b1;
+        b[k - 3] = b0;
+    }
 }
 
 int main()
@@ -56,7 +71,7 @@ int main()
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
-            if (row_sum(a, m, i) > 10)
+            if (row_sum(a, i, j) > 10)
             {
                 b[k] = a[i][j];
                 k++;
@@ -64,7 +79,22 @@ int main()
             }
     if (flag)
         return -1;
+//    for (int i = 0; i < k; i++)
+//        printf("F = %d ", b[i]);
+
     shift(&b[0], k);
+
+//    for (int i = 0; i < k; i++)
+//        printf("%d ", b[i]);
+
+    k = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            if (row_sum(a, i, j) > 10)
+            {
+                a[i][j] = b[k];
+                k++;
+            }
 
     print_mat(a, n, m);
 
