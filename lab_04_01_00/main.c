@@ -33,7 +33,5 @@ int main(void)
 
     assert(strpbrk(str, find) == my_strpbrk(str, find));
 
-//    if (res)
-    printf("%s", my_strpbrk(str, find));
     return 0;
 }
