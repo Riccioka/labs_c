@@ -1,36 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-
-char *my_strpbrk(const char *str1, const char *str2)
-{
-    char *str2_safe;
-
-    while (*str1)
-    {
-        str2_safe = (char*)str2;
-        while (*str2_safe)
-        {
-            if (*str1 == *str2_safe)
-                return (char*)str1;
-            str2_safe++;
-        }
-        str1++;
-    }
-    return (void*)0;
-}
+#include "my_strpbrk.h"
 
 int main(void)
 {
-    char *my_strpbrk(const char *str1, const char *str2);
     char str[256];
     char find[256];
-    if (scanf("%s", str) != 1)
+    if (scanf("%256s", str) != 1)
         return 1;
-    if (scanf("%s", find) != 1)
+    if (scanf("%256s", find) != 1)
         return 1;
-
-    assert(strpbrk(str, find) == my_strpbrk(str, find));
-
-    return 0;
+    return(strpbrk(str, find) != my_strpbrk(str, find));
 }
