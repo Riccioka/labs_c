@@ -2,7 +2,7 @@
 #include <string.h>
 #include <assert.h>
 
-char * my_strpbrk(const char *str1, const char *str2)
+char* my_strpbrk(const char *str1, const char *str2)
 {
     char *str2_safe;
 
@@ -22,7 +22,7 @@ char * my_strpbrk(const char *str1, const char *str2)
 
 int main(void)
 {
-    char * my_strpbrk(const char *str1, const char *str2);
+    char *my_strpbrk(const char *str1, const char *str2);
     char str[100];
     char find[100];
     if (scanf("%s", str) != 1)
