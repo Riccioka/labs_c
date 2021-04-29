@@ -1,29 +1,49 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 
-char *my_strtok(const char *str, const char *sep)
+
+// ",;:-.!? "
+
+char *my_strtok(char *str, char *delim, int *len)
 {
-//    char *str2_safe;
+    static int cur = 0;
+    int len_local = 0;
 
-    while (*str)
+    if (!str || !delim || str[cur] == '\0')
+        return NULL;
+    while (str[cur])
     {
-        if (*str == *sep)
-            return (char*)str;
+        if (strchr(delim, str[cur]))
+            break;
+        len_local++;
+        cur++;
     }
-    return (void*)0;
+    *len = len_local;
+    ++cur;
+    return str + cur - 1 - len_local;
 }
 
-int main()
+int main(void)
 {
-    char *my_strtok(const char *str, const char *sep);
     char str[256];
     char find[256];
-    if (scanf("%s", str) != 1)
+    char word[16];
+    if (scanf("%256[^\n]%*c", str) != 1)
         return 1;
-    if (scanf("%s", find) != 1)
+    if (scanf("%256[^\n]%*c", find) != 1)
         return 1;
-    printf("tra ta ta: %p", my_strtok(str, " "));
-    printf("the end");
+
+    char *res = NULL;
+    int len = 0;
+
+    while ((res = my_strtok(str, ",;:-.!? ", &len)))
+    {
+        char *word = strndup(res, len);
+//        char *line = strstr(find, word);
+        printf("%s %s\n", word, (strcmp(find, word) ? "no" : "yes"));
+        free(word);
+    }
+
     return 0;
 }

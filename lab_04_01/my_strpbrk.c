@@ -1,5 +1,3 @@
-
-
 char *my_strpbrk(const char *str1, const char *str2)
 {
     char *str2_safe;
