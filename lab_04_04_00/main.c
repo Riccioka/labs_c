@@ -55,7 +55,7 @@ int is_valid_ip(char *str)
 
 int main(void)
 {
-    char str[256];
+    char str[256] = {0};
     int c = 0;
 
     scanf("%256[^\n]%*c", str);
