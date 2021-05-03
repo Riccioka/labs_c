@@ -41,7 +41,7 @@ int main(void)
 {
     char str[256];
     char find[256];
-    char word[16];
+//    char word[16];
     if (scanf("%256[^\n]%*c", str) != 1)
         return 1;
     if (scanf("%256[^\n]%*c", find) != 1)
