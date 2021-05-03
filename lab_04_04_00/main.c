@@ -66,5 +66,5 @@ int main(void)
     else
         printf("NO");
 
-    return !c;
+    return 0;
 }
