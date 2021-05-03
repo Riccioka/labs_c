@@ -24,6 +24,19 @@ char *my_strtok(char *str, char *delim, int *len)
     return str + cur - 1 - len_local;
 }
 
+int strcmp_mod(char *str, char *word, int len)
+{
+    char *res = NULL;
+    int len2 = 0;
+
+    while ((res = my_strtok(str, ",;:-.!? ", &len2)))
+    {
+        if (len == len2 && !strncmp(res, word, len))
+            return 1;
+    }
+    return 0;
+}
+
 int main(void)
 {
     char str[256];
@@ -39,9 +52,9 @@ int main(void)
 
     while ((res = my_strtok(str, ",;:-.!? ", &len)))
     {
-        char *word = strndup(res, len);
-//        char *line = strstr(find, word);
-        printf("%s %s\n", word, (strcmp(find, word) ? "no" : "yes"));
+        char *word = calloc(sizeof(char), len + 1);
+        strncpy(word, res, len);
+        printf("%s %s\n", word, (strcmp_mod(find, word, len) ? "no" : "yes"));
         free(word);
     }
 
