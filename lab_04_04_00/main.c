@@ -63,14 +63,15 @@ int is_valid_ip(char *str)
 
 int main(void)
 {
-//    char str[256] = { 0 };
-    char str[256];
+    char str[256] = { 0 };
     int c = 0;
 
 //    scanf("%256[^\n]%*c", str);
-
-    if (!fgets(str, 256, stdin))
+    scanf("%[^\n]%*c", str);
+    if (my_strlen(str) > 256)
         return 1;
+//    if (!fgets(str, 256, stdin))
+//        return 1;
 
     if ((c = is_valid_ip(str)))
         printf("YES");
