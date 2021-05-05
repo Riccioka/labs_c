@@ -66,8 +66,8 @@ int main(void)
     char str[256] = { 0 };
     int c = 0;
 
-//    scanf("%256[^\n]%*c", str);
-    scanf("%c", str);
+    scanf("%256[^\n]%*c", str);
+//    scanf("%c", str);
     if (!fgets(str, 256, stdin))
         return 1;
 
