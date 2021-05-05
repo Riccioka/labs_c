@@ -60,9 +60,6 @@ int main(void)
 
     scanf("%256[^\n]%*c", str);
 
-//    if (scanf("%256[^\n]%*c", str) != 1)
-//        return 1;
-
     if ((c = is_valid_ip(str)))
         printf("YES");
     else

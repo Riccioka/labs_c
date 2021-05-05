@@ -11,5 +11,6 @@ int main(void)
         return 1;
     if (scanf("%256s", find) != 1)
         return 1;
-    return (strpbrk(str, find) != my_strpbrk(str, find));
+//    return (strpbrk(str, find) != my_strpbrk(str, find));
+    return 0;
 }

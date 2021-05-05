@@ -20,7 +20,8 @@ char *my_strtok(char *str, char *delim, int *len)
         cur++;
     }
     *len = len_local;
-    ++cur;
+    cur++;
+    printf("%p", str + cur - 1 - len_local);
     return str + cur - 1 - len_local;
 }
 
@@ -41,12 +42,11 @@ int main(void)
 {
     char str[256];
     char find[256];
-//    char word[16];
     if (scanf("%256[^\n]%*c", str) != 1)
         return 1;
     if (scanf("%256[^\n]%*c", find) != 1)
         return 1;
-
+    printf("im here");
     char *res = NULL;
     int len = 0;
 
