@@ -4,6 +4,14 @@
 #include <string.h>
 #include <assert.h>
 
+int my_strlen(const char *str)
+{
+    int count = 0;
+    while (*str++)
+        ++count;
+    return count;
+}
+
 char *skip_spaces(char *str)
 {
     while (*str == ' ' || *str == '\t')
@@ -58,7 +66,10 @@ int main(void)
     char str[256] = { 0 };
     int c = 0;
 
-    scanf("%256[^\n]%*c", str);
+//    scanf("%256[^\n]%*c", str);
+    scanf("%c", str);
+    if (!fgets(str, 256, stdin))
+        return 1;
 
     if ((c = is_valid_ip(str)))
         printf("YES");
