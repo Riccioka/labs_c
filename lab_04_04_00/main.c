@@ -66,9 +66,8 @@ int main(void)
     char str[256] = { 0 };
     int c = 0;
 
-    scanf("%256[^\n]%*c", str);
-//    scanf("%c", str);
-    if (!fgets(str, 256, stdin))
+//    scanf("%256[^\n]%*c", str);
+    if (!fgets(str, 257, stdin))
         return 1;
 
     if ((c = is_valid_ip(str)))
