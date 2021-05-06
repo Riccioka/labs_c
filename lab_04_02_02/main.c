@@ -64,7 +64,7 @@ int main(void)
         return 1;
     if (scanf("%256[^\n]%*c", find) != 1)
         return 1;
-
+    printf("Result: ");
     while ((word = my_strtok(&res, ",;:-.!? ", &len)))
     {
         if (!len)

@@ -43,7 +43,7 @@ int is_valid_ip(char *str)
     walker = skip_spaces(walker);
 
     c = my_atoi_mod(&walker);
-    if (c <= 0 || *walker != '.')
+    if (c < 0 || *walker != '.')
         return 0;
 
     walker++;
