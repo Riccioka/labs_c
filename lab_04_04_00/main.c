@@ -43,7 +43,7 @@ int is_valid_ip(char *str)
     walker = skip_spaces(walker);
 
     c = my_atoi_mod(&walker);
-    if (c < 0 || *walker != '.')
+    if (c <= 0 || *walker != '.')
         return 0;
 
     walker++;
@@ -66,12 +66,9 @@ int main(void)
     char str[256] = { 0 };
     int c = 0;
 
-//    scanf("%256[^\n]%*c", str);
     scanf("%[^\n]%*c", str);
     if (my_strlen(str) > 256)
         return 1;
-//    if (!fgets(str, 256, stdin))
-//        return 1;
 
     if ((c = is_valid_ip(str)))
         printf("YES");
