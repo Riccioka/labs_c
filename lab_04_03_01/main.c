@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef struct s_word
 {
@@ -55,7 +56,12 @@ int main(void)
     scanf("%1000[^\n]%*c", str);
     if (my_strlen(str) > 256)
         return 1;
-
+    int f = 0;
+    for (int i = 0; i < my_strlen(str); i++)
+        if (!isspace(str[i]))
+            f = 1;
+    if (f == 0)
+        return -1;
     while ((word = my_strtok(&res, ",;:-.!? ", &len)))
     {
         if (!len)
@@ -77,7 +83,7 @@ int main(void)
                 --len;
                 printf("Result: ");
             }
-            for (int j = 0; j < s.words[i].len; ++j)
+            for (size_t j = 0; j < s.words[i].len; ++j)
                 if (strchr(s.words[i].word, s.words[i].word[j]) == s.words[i].word + j)
                     printf("%c", s.words[i].word[j]);
 
@@ -88,7 +94,7 @@ int main(void)
     if (!len)
         printf("\n");
 
-    for (int i = 0; i < s.wc; ++i)
+    for (size_t i = 0; i < s.wc; ++i)
         free(s.words[i].word);
     free(s.words);
     return 0;
