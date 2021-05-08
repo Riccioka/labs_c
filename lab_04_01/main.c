@@ -5,7 +5,6 @@
 
 int main(void)
 {
-
-    printf(my_strpbrk() == strpbrk());
+//    printf(my_strpbrk() == strpbrk());
     return 0;
 }

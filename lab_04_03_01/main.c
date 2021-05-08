@@ -5,14 +5,14 @@
 
 typedef struct s_word
 {
-    char	*word;
-    size_t	len;
+    char *word;
+    size_t len;
 } t_word;
 
 typedef struct s_sentence
 {
-    t_word	*words;
-    size_t	wc;
+    t_word *words;
+    size_t wc;
 } t_sentence;
 
 int my_strlen(const char *str)
