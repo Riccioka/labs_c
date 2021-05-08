@@ -29,7 +29,7 @@ int my_atoi_mod(char **str)
         if (**str == '0')
             count_null++;
 //        c = c * 10 + (**str - '0');
-        c = c * 10 + (**str);
+        c = c * 10 + (**str - '0');
         if (c > 255)
             return -1;
         (*str)++;

@@ -96,14 +96,13 @@ int main(void)
             }
         }
     }
+    for (size_t i = 0; i < s.wc; ++i)
+        free(s.words[i].word);
+    free(s.words);
     if (f == 0)
         return 1;
     if (!len)
         printf("\n");
-
-    for (size_t i = 0; i < s.wc; ++i)
-        free(s.words[i].word);
-    free(s.words);
     return 0;
 }
 
