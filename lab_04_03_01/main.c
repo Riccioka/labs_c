@@ -74,6 +74,7 @@ int main(void)
     }
 
     len = 1;
+    f = 0;
     for (int i = s.wc - 2; i >= 0; --i)
     {
         if (strcmp(s.words[i].word, s.words[s.wc - 1].word))
@@ -82,15 +83,21 @@ int main(void)
             {
                 --len;
                 printf("Result: ");
+                f = 1;
             }
-            for (size_t j = 0; j < s.words[i].len; ++j)
-                if (strchr(s.words[i].word, s.words[i].word[j]) == s.words[i].word + j)
-                    printf("%c", s.words[i].word[j]);
+            if (f == 1)
+            {
+                for (size_t j = 0; j < s.words[i].len; ++j)
+                    if (strchr(s.words[i].word, s.words[i].word[j]) == s.words[i].word + j)
+                        printf("%c", s.words[i].word[j]);
 
-            if (i)
-                printf(" ");
+                if (i)
+                    printf(" ");
+            }
         }
     }
+    if (f == 0)
+        return 1;
     if (!len)
         printf("\n");
 
