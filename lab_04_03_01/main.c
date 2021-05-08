@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "my_strtok.h"
+#include "my_strlen.h"
 
 typedef struct s_word
 {
@@ -14,36 +16,6 @@ typedef struct s_sentence
     t_word *words;
     size_t wc;
 } t_sentence;
-
-int my_strlen(const char *str)
-{
-    int len = 0;
-
-    while (*str++)
-        ++len;
-    return len;
-}
-
-char *my_strtok(char **str, char *delim, int *len)
-{
-    int len_local = 0;
-    char *ret = NULL;
-
-    if (!str || !*str || !delim || **str == '\0')
-        return NULL;
-    while (**str)
-    {
-        if (strchr(delim, **str))
-            break;
-        len_local++;
-        (*str)++;
-    }
-    *len = len_local;
-    ret = *str - len_local;
-    if (**str)
-        (*str)++;
-    return ret;
-}
 
 int main(void)
 {
