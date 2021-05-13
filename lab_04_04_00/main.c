@@ -4,7 +4,6 @@
 #include <string.h>
 #include <assert.h>
 #include "my_strlen.h"
-
 #include "is_valid_ip.h"
 
 int main(void)

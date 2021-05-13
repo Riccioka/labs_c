@@ -5,6 +5,10 @@
 
 int main(void)
 {
-//    printf(my_strpbrk() == strpbrk());
-    return 0;
+    char str[256];
+    char find[256];
+    if (scanf("%256s", str) != 1 || scanf("%256s", find) != 1)
+        return 1;
+    return(strpbrk(str, find) != my_strpbrk(str, find));
+//    return 0;
 }
