@@ -12,9 +12,8 @@ int main(int argc, char **argv)
     FILE *f = fopen(argv[1], "r");
     int ret = 0;
 
-    //printf("%p %d\n", f, process(f));
     ret = process(f);
-    if (f)
-        fclose(f);
+//    if (f)
+//        fclose(f);
     return ret;
 }
