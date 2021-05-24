@@ -12,7 +12,7 @@ int main(int argc, char **argv)
     float a = 0;
     int res = 0;
 
-    if ((f = fopen(argv[1], "r")) == NULL)
+    if (argc != 2 || (f = fopen(argv[1], "r")) == NULL)
         return -1;
 
     while ((res = fscanf(f, "%f", &a)) == 1)
