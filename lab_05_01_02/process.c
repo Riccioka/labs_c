@@ -12,7 +12,7 @@ int process(FILE *f)
     int num = 0;
     int res = 0;
     int max = INT_MIN;
-    int max_ind = -1;
+//    int max_ind = -1;
 
     if (f == NULL || feof(f))
         return ERROR_OPEN;
@@ -22,7 +22,7 @@ int process(FILE *f)
         if (num > max)
         {
             max = num;
-            max_ind = count;
+//            max_ind = count;
         }
     }
     if (res == EOF)
