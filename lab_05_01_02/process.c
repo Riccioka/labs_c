@@ -26,6 +26,9 @@ int process(FILE *f)
         }
     }
     if (res == EOF)
-        return max_ind;
+    {
+        printf("%d", max_ind);
+        return 0;
+    }
     return ERROR_FILE;
 }
