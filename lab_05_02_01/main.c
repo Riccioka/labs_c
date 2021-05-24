@@ -1,43 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "process.h"
 
 #define OK 0
 
-int main()
+int main(int argc, char **argv)
 {
-    char name[256];
-    scanf("%s", &name);
     FILE *f;
     float min = __FLT_MAX__;
     float max = __FLT_MIN__;
     float a = 0;
+    int res = 0;
 
-    if ((f = fopen("name", "r+")) == NULL)
-    {
-        printf("");
-        return 1;
-    }
+    if ((f = fopen(argv[1], "r")) == NULL)
+        return -1;
 
-    while (fscanf (f, "%f", &a) != EOF)
+    while ((res = fscanf(f, "%f", &a)) == 1)
     {
         if (a < min)
             min = a;
         if (a > max)
             max = a;
     }
+    if (res != EOF)
+        return -1;
 
     float c = (min + max) / 2;
     int count = 0;
     rewind(f);
 
-    while (fscanf (f, "%f", &a) != EOF)
+    while ((res = fscanf(f, "%f", &a)) == 1)
     {
         if (a > c)
             count++;
     }
-    fprintf(f, "\n%d", count);
+    if (res != EOF)
+        return -1;
+    printf("%d", count);
     fclose(f);
 
     return 0;
