@@ -121,8 +121,8 @@ int c(char *fname)
 int main(int argc, char **argv)
 {
     char *fname;
-    char *fname_out;
-    char *str;
+//    char *fname_out;
+//    char *str;
 
     if (argc < 3)
         return -1;
@@ -144,18 +144,18 @@ int main(int argc, char **argv)
             return -1;
     }
 
-    else if (argc == 5)
-    {
-        if (strcmp(argv[1], "fb") == 0)
-        {
-            fname = argv[2];
-            fname_out = argv[3];
-            str = argv[4];
-//            b(fname, fname_out, str);
-        }
-        else
-            return -1;
-    }
+//    else if (argc == 5)
+//    {
+//        if (strcmp(argv[1], "fb") == 0)
+//        {
+//            fname = argv[2];
+//            fname_out = argv[3];
+//            str = argv[4];
+////            b(fname, fname_out, str);
+//        }
+//        else
+//            return -1;
+//    }
     else
      return -1;
 
