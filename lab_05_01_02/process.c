@@ -27,6 +27,17 @@ int process(FILE *f, int *m)
         }
     }
     if (res == EOF)
-        return max_ind;
+        return OK;
     return ERROR_FILE;
+}
+
+int main(void)
+{
+    int res;
+    int ret = process(stdin, &res);
+
+    if (ret == OK)
+        printf("%d", res);
+
+    return ret;
 }
