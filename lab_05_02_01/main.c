@@ -17,8 +17,6 @@ int main(int argc, char **argv)
 
     fseek(f, 0, SEEK_SET);
 
-    int count = 0;
-
     while (!feof(f))
         if ((res = fscanf(f, "%f", &a)) == 1)
         {
@@ -26,12 +24,9 @@ int main(int argc, char **argv)
                 min = a;
             if (a > max)
                 max = a;
-            count ++;
         }
 
-//    if (res != EOF)
-//        return -1;
-    if (count == 0)
+    if (res != EOF)
         return -1;
 
     float c = (min + max) / 2;
