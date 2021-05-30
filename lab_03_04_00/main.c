@@ -1,17 +1,27 @@
 #include <stdio.h>
 #include <limits.h>
 
-int read_mat(int a[][10], int n, int m)
+#define N 10
+#define M 10
+#define INVALID_ELEMENT_VALUE 1
+#define INVALID_SIZES 1
+#define INVALID_DATA -1
+#define NUMBER_DOESNT_EXIST -2
+
+int read_mat(int a[][M], int n, int m)
 {
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 2 ||
+            scanf("%d", &m) <= 0 || m > 10 || m < 2 || n != m)
+        return INVALID_SIZES;
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             if (scanf("%d", &a[i][j]) != 1)
-                return 1;
+                return INVALID_ELEMENT_VALUE;
     return 0;
 }
 
 
-void print_mat(int a[][10], int n, int m)
+void print_mat(int a[][M], int n, int m)
 {
     for (int i = 0; i < n; i++)
     {
@@ -21,18 +31,8 @@ void print_mat(int a[][10], int n, int m)
     }
 }
 
-int main()
+int search_min(int a[][M], int n)
 {
-    int n = 0;
-    int m = 0;
-
-    int a[10][10];
-
-    if (scanf("%d", &n) <= 0 || n > 10 || n < 2 ||
-        scanf("%d", &m) <= 0 || m > 10 || m < 2 || n != m ||
-        read_mat(a, n, m))
-        return -1;
-
     int flag = 1;
     int min = INT_MAX;
 
@@ -44,8 +44,23 @@ int main()
                 flag = 0;
             }
     if (flag)
-        return 1;
-    printf("%d", min);
+        return NUMBER_DOESNT_EXIST;
+    return min;
+}
+
+int main()
+{
+    int n = 0;
+    int m = 0;
+
+    int a[N][M];
+
+    if (read_mat(a, n, m))
+        return INVALID_DATA;
+
+    if (search_min(a, n) == NUMBER_DOESNT_EXIST)
+        return NUMBER_DOESNT_EXIST;
+    printf("%d", search_min(a, n));
     return 0;
 }
 

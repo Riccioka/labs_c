@@ -1,12 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int read_mat(int a[][10], int n, int m)
+#define N 10
+#define M 10
+#define SIZE 100
+#define INVALID_ELEMENT_VALUE 1
+#define INVALID_SIZES 1
+#define INVALID_DATA -1
+#define NUMBER_DOESNT_EXIST -2
+
+int read_mat(int a[][M], int n, int m)
 {
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 1 ||
+        scanf("%d", &m) <= 0 || m > 10 || m < 1)
+        return INVALID_SIZES;
+
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             if (scanf("%d", &a[i][j]) != 1)
-                return 1;
+                return INVALID_ELEMENT_VALUE;
     return 0;
 }
 
@@ -20,7 +32,7 @@ void print_mat(int a[][10], int n, int m)
     }
 }
 
-int row_sum(int a[10][10], int i, int j)
+int row_sum(int a[][M], int i, int j)
 {
     int sum = 0;
     int safe = a[i][j];
@@ -55,19 +67,12 @@ void shift(int *b, int k)
 
 int main()
 {
-    int n = 0;
-    int m = 0;
-    int k = 0;
-    int flag = 1;
-    int a[10][10];
-    int b[100];
+    int n = 0, m = 0, k = 0, flag = 1;
+    int a[N][M];
+    int b[SIZE];
 
-    if (scanf("%d", &n) <= 0 ||
-        n > 10 || n < 1 ||
-        scanf("%d", &m) <= 0 ||
-        m > 10 || m < 1 ||
-        read_mat(a, n, m))
-        return -1;
+    if (read_mat(a, n, m))
+        return INVALID_DATA;
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
@@ -78,7 +83,7 @@ int main()
                 flag = 0;
             }
     if (flag)
-        return -1;
+        return NUMBER_DOESNT_EXIST;
 
     shift(&b[0], k);
 

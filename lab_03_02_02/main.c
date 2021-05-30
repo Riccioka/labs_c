@@ -2,12 +2,22 @@
 #include <stdlib.h>
 #include <math.h>
 
-int read_mat1(int a[][10], int n, int m)
+#define N 20
+#define M 20
+#define INVALID_ELEMENT_VALUE 1
+#define INVALID_SIZES 1
+#define INVALID_DATA -1
+
+int read_mat1(int a[][M], int n, int m)
 {
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 1 ||
+        scanf("%d", &m) <= 0 || m > 10 || m < 1)
+        return INVALID_SIZES;
+
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             if (scanf("%d", &a[i][j]) != 1)
-                return 1;
+                return INVALID_ELEMENT_VALUE;
     return 0;
 }
 
@@ -20,6 +30,11 @@ void print_mat1(int a[][10], int size, int m)
             printf("%d ", a[i][j]);
         printf("\n");
     }
+}
+
+void dop_str()
+{
+
 }
 
 int sum_digits(int n)
@@ -37,13 +52,11 @@ int main()
 {
     int n = 0;
     int m = 0;
-    int a[20][10];
+    int a[N][M];
     int nchet = 0;
 
-    if (scanf("%d", &n) <= 0 || n > 10 || n < 1 ||
-        scanf("%d", &m) <= 0 || m > 10 || m < 1 ||
-        read_mat1(a, n, m))
-        return -1;
+    if (read_mat1(a, n, m))
+        return INVALID_DATA;
 
     for (int i = 0; i < n; i++)
     {
@@ -54,14 +67,8 @@ int main()
 
         if (nchet > 1)
         {
-            for (int j = 0; j < m; j++)
-                printf("%d ", -1);
-            printf("\n");
+            dop_str();
         }
-
-        for (int j = 0; j < m; j++)
-            printf("%d ", a[i][j]);
-        printf("\n");
     }
     return 0;
 }

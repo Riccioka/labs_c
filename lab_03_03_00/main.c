@@ -1,17 +1,27 @@
 #include <stdio.h>
 #include <limits.h>
 
-int read_mat(int a[][10], int n, int m)
+#define N 10
+#define M 10
+#define INVALID_ELEMENT_VALUE 1
+#define INVALID_SIZES 1
+#define INVALID_DATA -1
+
+
+int read_mat(int a[][M], int n, int m)
 {
+    if (scanf("%d", &n) <= 0 || n > 10 || n < 1 ||
+            scanf("%d", &m) <= 0 || m > 10 || m < 1)
+        return INVALID_SIZES;
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             if (scanf("%d", &a[i][j]) != 1)
-                return 1;
+                return INVALID_ELEMENT_VALUE;
     return 0;
 }
 
 
-void print_mat(int a[][10], int n, int m)
+void print_mat(int a[][M], int n, int m)
 {
     for (int i = 0; i < n; i++)
     {
@@ -47,18 +57,16 @@ int main(void)
 {
     int n = 0;
     int m = 0;
-    int a[10][10] = { 0 };
+    int a[N][M] = { 0 };
 
-    if (scanf("%d", &n) <= 0 ||
-        n > 10 || n < 1 ||
-        scanf("%d", &m) <= 0 ||
-        m > 10 || m < 1 ||
-        read_mat(a, n, m))
-        return -1;
+    if (read_mat(a, n, m))
+        return INVALID_DATA;
+
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             if (row_sum(a, m, i) < row_sum(a, m, j))
                 swap_rows(a, m, i, j);
+
     print_mat(a, n, m);
     return 0;
 }
