@@ -33,7 +33,7 @@ int process(FILE *f, int *m)
 
 int main(void)
 {
-    int res;
+    int res = 0;
     int ret = process(stdin, &res);
 
     if (ret == OK)
