@@ -12,8 +12,10 @@ int main(int argc, char **argv)
     float a = 0;
     int res = 0;
 
-    if (argc != 2 || (f = fopen(argv[1], "r")) == NULL)
+    if (argc != 2 || (f = fopen(argv[1], "r")) == NULL || getc(f) == EOF)
         return -1;
+
+    fseek(f, 0, SEEK_SET);
 
     while ((res = fscanf(f, "%f", &a)) == 1)
     {
@@ -30,10 +32,8 @@ int main(int argc, char **argv)
     rewind(f);
 
     while ((res = fscanf(f, "%f", &a)) == 1)
-    {
         if (a > c)
             count++;
-    }
     if (res != EOF)
         return -1;
     printf("%d", count);
