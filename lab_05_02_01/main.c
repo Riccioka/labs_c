@@ -17,15 +17,13 @@ int main(int argc, char **argv)
 
     fseek(f, 0, SEEK_SET);
 
-    while (!feof(f))
-        if ((res = fscanf(f, "%f", &a)) == 1)
-        {
-            if (a < min)
-                min = a;
-            if (a > max)
-                max = a;
-        }
-
+    while ((res = fscanf(f, "%f", &a)) == 1)
+    {
+        if (a < min)
+            min = a;
+        if (a > max)
+            max = a;
+    }
     if (res != EOF)
         return -1;
 
