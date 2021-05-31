@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <limits.h>
 
-//#define OK 0
-//#define ERROR_OPEN -2
-//#define ERROR_FILE -3
+#define OK 0
+#define ERROR_OPEN -2
+#define ERROR_FILE -3
 
 int process(FILE *f, int *m)
 {
@@ -15,8 +15,8 @@ int process(FILE *f, int *m)
     int max_ind = -1;
 
 //    if (f == NULL || feof(f) || !m)
-    if (f == NULL || feof(f))
-        return -2;
+    if (!f || feof(f))
+        return ERROR_OPEN;
     while ((res = fscanf(f, "%d", &num)) == 1)
     {
         count++;
@@ -28,8 +28,8 @@ int process(FILE *f, int *m)
         }
     }
     if (res == EOF)
-        return 0;
-    return -3;
+        return OK;
+    return ERROR_FILE;
 }
 
 int main(void)
@@ -37,7 +37,7 @@ int main(void)
     int res = 0;
     int ret = process(stdin, &res);
 
-    if (ret == 0)
+    if (ret == OK)
         printf("%d", res);
 
     return ret;
