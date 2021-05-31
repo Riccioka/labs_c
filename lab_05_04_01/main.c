@@ -1,157 +1,199 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
 
-struct Student
+typedef struct s_student
 {
     char Surname[25];
     char Name[10];
-    int a[4];
-};
+    unsigned int a[4];
+}				t_student;
 
-int a(char *fname)
+void print_student(t_student *stud)
 {
-    printf("LGjH");
-    FILE *file = fopen(fname, "rb");
-    struct Student stud;
-    struct Student stud1, stud2;
-    printf("LGBH");
-    if (!file)
-        return -1;
-
-    int f = 1;
-    while (f == 1)
+    if (stud)
     {
-        f = 0;
-        if (fread(&stud, sizeof(stud), 1, file) <= 0)
-            return -1;
-        while (fread(&stud, sizeof(stud), 1, file) > 0)
+        double sum = stud->a[0] + stud->a[1] + stud->a[2] + stud->a[3];
+        printf("%s %s %d %d %d %d - %lf\n",
+            stud->Surname, stud->Name,
+            stud->a[0], stud->a[1], stud->a[2], stud->a[3], sum / 4.0);
+    }
+}
+
+void print_students(FILE *fin)
+{
+    double average = 0;
+    size_t count = 0;
+    t_student stud;
+
+    fseek(fin, 0, SEEK_SET);
+    if (!fin)
+        return ;
+    while (fread(&stud, sizeof(stud), 1, fin))
+    {
+        double sum = stud.a[0] + stud.a[1] + stud.a[2] + stud.a[3];
+        average += sum;
+        count += 4;
+        print_student(&stud);
+    }
+    printf("AVERAGE: %lf\n", average / count);
+    fseek(fin, 0, SEEK_SET);
+}
+
+int student_cmp(t_student *l, t_student *r)
+{
+    if (!l || !r)
+        return 0;
+    int s = strcmp(l->Surname, r->Surname);
+    int n = strcmp(l->Name, r->Name);
+    return (s > 0 || (s == 0 && n > 0));
+}
+
+int sort(char **args)
+{
+    FILE *fin = fopen(args[2], "r+b");
+    t_student s;
+    t_student s2;
+    int ret = -1;
+    int rd = 0;
+    size_t offset = 0;
+    size_t current_pos = 0;
+
+    if (fin)
+    {
+        ret = 0;
+        while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
         {
-            fseek(file, -51-51, SEEK_CUR);
-
-            fread(&stud1, sizeof(stud), 1, file);
-            fread(&stud2, sizeof(stud), 1, file);
-
-            if (strcmp(stud1.Surname, stud2.Surname) > 0 ||
-                    (strcmp(stud1.Surname, stud2.Surname) == 0 &&
-                     strcmp(stud1.Name, stud2.Name) > 0))
+            while ((rd = fread(&s2, sizeof(s2), 1, fin)) || ret)
             {
-                fseek(file, -51-51, SEEK_CUR);
-                fwrite(&stud2, sizeof(stud), 1, file);
-                fwrite(&stud1, sizeof(stud), 1, file);
+                if (student_cmp(&s, &s2))
+                {
+                    current_pos = ftell(fin) - sizeof(s2);
+                    fseek(fin, offset, SEEK_SET);
+                    if (!fwrite(&s2, sizeof(s2), 1, fin))
+                        ret = -1;
+                    fseek(fin, current_pos, SEEK_SET);
+                    if (!ret && !fwrite(&s, sizeof(s), 1, fin))
+                        ret = -1;
+                    s = s2;
+                }
+            }
+            offset += sizeof(s);
+            fseek(fin, offset, SEEK_SET);
+        }
+        ret = -(!ret && rd == 0 && !feof(fin));
+    }
+    if (fin)
+        fclose(fin);
+    return ret;
+}
 
-                f = 1;
+int print(char **args)
+{
+    FILE *fin = fopen(args[2], "rb");
+    FILE *fout = fopen(args[3], "wb");
+    t_student s;
+    int ret = -1;
+    int rd = 0;
+
+    if (fin && fout)
+    {
+        ret = 0;
+        while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
+        {
+            if (strstr(s.Surname, args[4]) == s.Surname &&
+                    !fwrite(&s, sizeof(s), 1, fout))
+                ret = -1;
+        }
+        ret = -(!ret && rd == 0 && !feof(fin));
+    }
+    if (fin)
+        fclose(fin);
+    if (fout)
+        fclose(fout);
+    return ret;
+}
+
+double get_average(FILE *fin)
+{
+    double average = 0;
+    size_t count = 0;
+    t_student s;
+
+    if (!fin)
+        return 0;
+    while (fread(&s, sizeof(s), 1, fin))
+    {
+        average += s.a[0] + s.a[1] + s.a[2] + s.a[3];
+        count += 4;
+    }
+    return (feof(fin) && count) ? (average / count) : 0;
+}
+
+int del(char **args)
+{
+    FILE *fin = fopen(args[2], "r+b");
+    double average = get_average(fin);
+    t_student s;
+    int ret = -1;
+    int rd = 0;
+    size_t offset = 0;
+    size_t current_pos = 0;
+
+    if (fin && average > 0.0)
+    {
+        fseek(fin, 0, SEEK_SET);
+        ret = 0;
+        while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
+        {
+            if ((s.a[0] + s.a[1] + s.a[2] + s.a[3]) / 4.0 >= average)
+            {
+                current_pos = ftell(fin);
+                fseek(fin, offset, SEEK_SET);
+                if (!fwrite(&s, sizeof(s), 1, fin))
+                    ret = -1;
+                offset += sizeof(s);
+                fseek(fin, current_pos, SEEK_SET);
             }
         }
-        fseek(file, 0, SEEK_SET);
+        ret = -(!ret && rd == 0 && !feof(fin));
     }
 
-    rewind(file);
-    while (fread(&stud, sizeof(stud), 1, file) > 0)
-        {
-            printf("%s%s%d%d%d%d\n",
-                stud.Surname, stud.Name,
-                stud.a[0], stud.a[1], stud.a[2], stud.a[3]);
-        }
-
-    fclose(file);
-    return 0;
-}
-
-
-int b(char *fname, char *fname_out, char *str)
-{
-    FILE *file = fopen(fname, "rb");
-    FILE *file_out = fopen(fname_out, "wb");
-    struct Student stud;
-    int len = strlen(str);
-    char surname[25];
-    char name[15];
-    int a[4];
-
-    if (!file)
-        return -1;
-    while (fread(&stud, sizeof(struct Student), 1, file) > 0)
+    if (fin)
     {
-        fseek(file, -51, SEEK_CUR);
-        fread(&surname, sizeof(char), 25, file);
-        fread(&name, sizeof(char), 10, file);
-        fread(&a[4], sizeof(int), 16, file);
-        if (strncmp(surname, str, len) == 0)
-        {
-            fwrite(&surname, sizeof(char), 25, file_out);
-            fwrite(&name, sizeof(char), 10, file_out);
-            fwrite(&a[4], sizeof(int), 16, file_out);
-        }
+        fclose(fin);
+        ret = truncate(args[2], offset);
     }
-
-    fclose(file);
-    fclose(file_out);
-
-    return 0;
+    return ret;
 }
 
-
-int c(char *fname)
+int extract_cmd(const char *arg)
 {
-    FILE *file = fopen(fname, "r + b");
-    struct Student stud;
+    int ret = -53;
+    int state = 0;
 
-    if (!file)
-        return -1;
-    while (fread(&stud, sizeof(struct Student), 1, file) > 0)
+    while (*arg)
     {
-
+        if ((*arg == 's' || *arg == 'f' || *arg == 'd') && state == 0)
+        {
+            state = 1;
+            ret = 1 * (*arg == 'f') + 2 * (*arg == 'd');
+        }
+        else if (*arg == 'b' && state == 1)
+            state = 2;
+        ++arg;
     }
-    return 0;
+    return ret;
 }
-
 
 int main(int argc, char **argv)
 {
-    char *fname;
-//    char *fname_out;
-//    char *str;
+    int ret = -53;
+    int (*actions[])(char **) = { sort, print, del };
 
-    if (argc < 3)
-        return -1;
-
-    printf("099");
-    if (argc == 3)
-    {
-        fname = argv[2];
-        if (strcmp(argv[1], "sb") == 0)
-        {
-            printf("df");
-            a(fname);
-            printf("yglkjhj");
-            return 0;
-        }
-        else if (strcmp(argv[1], "db") == 0)
-        {
-//            c(fname);
-            return 0;
-        }
-        else
-            return -1;
-    }
-
-
-//    else if (argc == 5)
-//    {
-//        if (strcmp(argv[1], "fb") == 0)
-//        {
-//            fname = argv[2];
-//            fname_out = argv[3];
-//            str = argv[4];
-//            b(fname, fname_out, str);
-//        }
-//        else
-//            return -1;
-//    }
-//    else
-//     return -1;
-
-
-    return 0;
+    if (argc > 2 && (ret = extract_cmd(argv[1])) >= 0
+        && (argc == 3 || (argc == 5 && ret == 1)))
+        ret = actions[ret](argv);
+    return ret;
 }
