@@ -11,45 +11,34 @@ struct Student
 
 int a(char *fname)
 {
+    printf("LGjH");
     FILE *file = fopen(fname, "rb");
     struct Student stud;
-
+    struct Student stud1, stud2;
+    printf("LGBH");
     if (!file)
         return -1;
-
-    char surname1[25];
-    char name1[10];
-    char surname2[25];
-    char name2[10];
-    int a1[4];
-    int a2[4];
 
     int f = 1;
     while (f == 1)
     {
         f = 0;
-        if (fread(&stud, sizeof(struct Student), 1, file) <= 0)
+        if (fread(&stud, sizeof(stud), 1, file) <= 0)
             return -1;
-        while (fread(&stud, sizeof(struct Student), 1, file) > 0)
+        while (fread(&stud, sizeof(stud), 1, file) > 0)
         {
             fseek(file, -51-51, SEEK_CUR);
-            fread(&surname1, sizeof(char), 25, file);
-            fread(&name1, sizeof(char), 10, file);
-            fread(&a1[4], sizeof(int), 16, file);
-            fread(&surname2, sizeof(char), 25, file);
-            fread(&name2, sizeof(char), 10, file);
-            fread(&a2[4], sizeof(int), 16, file);
 
-            if (strcmp(surname1, surname2) > 0 ||
-                    (strcmp(surname1, surname2) == 0 && strcmp(name1, name2) > 0))
+            fread(&stud1, sizeof(stud), 1, file);
+            fread(&stud2, sizeof(stud), 1, file);
+
+            if (strcmp(stud1.Surname, stud2.Surname) > 0 ||
+                    (strcmp(stud1.Surname, stud2.Surname) == 0 &&
+                     strcmp(stud1.Name, stud2.Name) > 0))
             {
-                fseek(file, -51-51, SEEK_CUR);          //начало первой структуры surname1
-                fwrite(&surname2, sizeof(char), 25, file);
-                fwrite(&name2, sizeof(char), 10, file);
-                fwrite(&a2[4], sizeof(int), 16, file);
-                fwrite(&surname1, sizeof(char), 25, file);
-                fwrite(&name1, sizeof(char), 10, file);
-                fwrite(&a1[4], sizeof(int), 16, file);
+                fseek(file, -51-51, SEEK_CUR);
+                fwrite(&stud2, sizeof(stud), 1, file);
+                fwrite(&stud1, sizeof(stud), 1, file);
 
                 f = 1;
             }
@@ -58,7 +47,7 @@ int a(char *fname)
     }
 
     rewind(file);
-    while (fread(&stud, sizeof(struct Student), 1, file) > 0)
+    while (fread(&stud, sizeof(stud), 1, file) > 0)
         {
             printf("%s%s%d%d%d%d\n",
                 stud.Surname, stud.Name,
@@ -127,12 +116,15 @@ int main(int argc, char **argv)
     if (argc < 3)
         return -1;
 
+    printf("099");
     if (argc == 3)
     {
         fname = argv[2];
         if (strcmp(argv[1], "sb") == 0)
         {
+            printf("df");
             a(fname);
+            printf("yglkjhj");
             return 0;
         }
         else if (strcmp(argv[1], "db") == 0)
@@ -144,6 +136,7 @@ int main(int argc, char **argv)
             return -1;
     }
 
+
 //    else if (argc == 5)
 //    {
 //        if (strcmp(argv[1], "fb") == 0)
@@ -151,13 +144,13 @@ int main(int argc, char **argv)
 //            fname = argv[2];
 //            fname_out = argv[3];
 //            str = argv[4];
-////            b(fname, fname_out, str);
+//            b(fname, fname_out, str);
 //        }
 //        else
 //            return -1;
 //    }
-    else
-     return -1;
+//    else
+//     return -1;
 
 
     return 0;
