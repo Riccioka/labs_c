@@ -5,8 +5,8 @@
 
 typedef struct s_student
 {
-    char Surname[25];
-    char Name[10];
+    char surname[25];
+    char name[10];
     unsigned int a[4];
 }				t_student;
 
@@ -16,7 +16,7 @@ void print_student(t_student *stud)
     {
         double sum = stud->a[0] + stud->a[1] + stud->a[2] + stud->a[3];
         printf("%s %s %d %d %d %d - %lf\n",
-            stud->Surname, stud->Name,
+            stud->surname, stud->name,
             stud->a[0], stud->a[1], stud->a[2], stud->a[3], sum / 4.0);
     }
 }
@@ -45,8 +45,8 @@ int student_cmp(t_student *l, t_student *r)
 {
     if (!l || !r)
         return 0;
-    int s = strcmp(l->Surname, r->Surname);
-    int n = strcmp(l->Name, r->Name);
+    int s = strcmp(l->surname, r->surname);
+    int n = strcmp(l->name, r->name);
     return (s > 0 || (s == 0 && n > 0));
 }
 
@@ -102,9 +102,9 @@ int print(char **args)
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
         {
-            if (strstr(s.Surname, args[4]) == s.Surname &&
-                    !fwrite(&s, sizeof(s), 1, fout))
-                ret = -1;
+            if (strstr(s.surname, args[4]) == s.surname &&
+                !fwrite(&s, sizeof(s), 1, fout))
+                    ret = -1;
         }
         ret = -(!ret && rd == 0 && !feof(fin));
     }

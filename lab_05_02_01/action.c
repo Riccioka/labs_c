@@ -3,8 +3,8 @@
 
 int action(FILE *f, float *c)
 {
-    int res;
-    float a;
+    int res = 0;
+    float a = 0;
     float min = FLT_MAX;
     float max = FLT_MIN;
 
