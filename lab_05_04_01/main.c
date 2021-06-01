@@ -27,6 +27,7 @@ void print_students(FILE *fin)
     size_t count = 0;
     t_student stud;
 
+    memset(&stud, 0, sizeof(stud));
     fseek(fin, 0, SEEK_SET);
     if (!fin)
         return;
@@ -60,6 +61,8 @@ int sort(char **args)
     size_t offset = 0;
     size_t current_pos = 0;
 
+    memset(&s, 0, sizeof(s));
+    memset(&s2, 0, sizeof(s2));
     if (fin)
     {
         ret = 0;
@@ -97,6 +100,7 @@ int print(char **args)
     int ret = -1;
     int rd = 0;
 
+    memset(&s, 0, sizeof(s));
     if (fin && fout)
     {
         ret = 0;
@@ -120,6 +124,7 @@ double get_average(FILE *fin)
     size_t count = 0;
     t_student s;
 
+    memset(&s, 0, sizeof(s));
     if (!fin)
         return 0;
     while (fread(&s, sizeof(s), 1, fin))
@@ -140,6 +145,7 @@ int del(char **args)
     size_t offset = 0;
     size_t current_pos = 0;
 
+    memset(&s, 0, sizeof(s));
     if (fin && average > 0.0)
     {
         fseek(fin, 0, SEEK_SET);

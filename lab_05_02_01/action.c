@@ -17,7 +17,7 @@ int action(FILE *f, float *c)
     *c = (min + max) / 2;
 
     if (!feof(f))
-        return -1;
+        return 1;
 
     return 0;
 }
