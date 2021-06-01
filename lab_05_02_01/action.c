@@ -5,8 +5,8 @@ int action(FILE *f, float *c)
 {
     int res = 0;
     float a = 0;
-    float min = FLT_MAX;
-    float max = FLT_MIN;
+    float min = 1 * FLT_MAX;
+    float max = 1 * FLT_MIN;
 
     while ((res = fscanf(f, "%f", &a)) == 1)
     {
