@@ -26,7 +26,7 @@ int process(FILE *f, int *m)
             *m = max_ind;
         }
     }
-    if (res == EOF)
+    if (feof(f) && count != 0)
         return OK;
     return ERROR_FILE;
 }
