@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     while ((res = fscanf(f, "%f", &a)) == 1)
         if (a > c)
             count++;
-    if (res != EOF)
+    if (!feof(f))
         return -1;
     printf("%d", count);
     fclose(f);
