@@ -7,6 +7,7 @@ int action(FILE *f, float *c)
     float min = 3.40282e+38;
     float max = 1.17549e-38;
 
+    fseek(f, 0, SEEK_SET);
     while (fscanf(f, "%f", &a) == 1)
     {
         if (a < min)
@@ -17,7 +18,7 @@ int action(FILE *f, float *c)
     *c = (min + max) / 2;
 
     if (!feof(f))
-        return 1;
+        return -1;
 
     return 0;
 }

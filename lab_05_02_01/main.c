@@ -11,7 +11,7 @@ int main(int argc, char **argv)
     float c = 0;
     int count = 0;
 
-    if (argc != 2 || (f = fopen(argv[1], "r")) == NULL || feof(f) || action(f, &c))
+    if (argc != 2 || (f = fopen(argv[1], "r")) == NULL|| getc(f) == EOF || feof(f) || action(f, &c))
         return -1;
 
     rewind(f);
