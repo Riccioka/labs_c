@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <limits.h>
 
 #define OK 0
@@ -32,13 +31,3 @@ int process(FILE *f, int *m)
     return ERROR_FILE;
 }
 
-int main(void)
-{
-    int res = 0;
-    int ret = process(stdin, &res);
-
-    if (ret == OK)
-        printf("%d", res);
-
-    return ret;
-}
