@@ -16,8 +16,8 @@ void print_student(t_student *stud)
     {
         double sum = stud->a[0] + stud->a[1] + stud->a[2] + stud->a[3];
         printf("%s %s %d %d %d %d - %lf\n",
-            stud->surname, stud->name,
-            stud->a[0], stud->a[1], stud->a[2], stud->a[3], sum / 4.0);
+        stud->surname, stud->name,
+        stud->a[0], stud->a[1], stud->a[2], stud->a[3], sum / 4.0);
     }
 }
 
@@ -29,7 +29,7 @@ void print_students(FILE *fin)
 
     fseek(fin, 0, SEEK_SET);
     if (!fin)
-        return ;
+        return;
     while (fread(&stud, sizeof(stud), 1, fin))
     {
         double sum = stud.a[0] + stud.a[1] + stud.a[2] + stud.a[3];
@@ -103,8 +103,8 @@ int print(char **args)
         while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
         {
             if (strstr(s.surname, args[4]) == s.surname &&
-                !fwrite(&s, sizeof(s), 1, fout))
-                    ret = -1;
+               !fwrite(&s, sizeof(s), 1, fout))
+               ret = -1;
         }
         ret = -(!ret && rd == 0 && !feof(fin));
     }
