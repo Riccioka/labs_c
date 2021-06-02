@@ -9,7 +9,12 @@ typedef struct s_student
     unsigned int a[4];
 }				t_student;
 
+int sort(char **args);
 
 int print(char **args);
+
+int extract_cmd(const char *arg);
+
+int del(char **args);
 
 #endif // PRINT_H
