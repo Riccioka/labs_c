@@ -13,9 +13,9 @@ int main(int argc, char **argv)
     if (argc > 4 || argc < 3 || strlen(argv[1]) != 1)
         return -1;
     if (argc == 4 && argv[1][0] == 'c')
-        return c(argv[argc - 1], atoi(argv[2]));
-    else if (argv[1][0] == 'p')
         return 0;
+    else if (argv[1][0] == 'p')
+        return p(argv[argc - 1]);
     else if (argv[1][0] == 's')
         return 0;
     return -1;
