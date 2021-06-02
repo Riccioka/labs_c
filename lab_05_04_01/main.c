@@ -196,22 +196,26 @@ int main(int argc, char** argv)
 {
     int (*actions[])(char **) = { sort, print, del };
     int ret = 53;
-    if (argc > 2) {
+    if (argc > 2)
+    {
         int ret = extract_cmd(argv[1]);
-        switch (ret) {
-        case 0:
-        case 2:
-            if (argc == 3) {
-                ret = actions[ret](argv);
+        switch (ret)
+        {
+            case 0:
+            case 2:
+            {
+                if (argc == 3)
+                    ret = actions[ret](argv);
+                else ret = 53;
+                break;
             }
-            else ret = 53;
-            break;
-        case 1:
-            if (argc == 4) {
-                ret = actions[ret](argv);
+            case 1:
+            {
+                if (argc == 4)
+                    ret = actions[ret](argv);
+                else ret = 53;
+                break;
             }
-            else ret = 53;
-            break;
         }
     }
     return ret;
