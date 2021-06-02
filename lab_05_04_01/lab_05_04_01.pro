@@ -4,6 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.c
+        main.c \
+        print.c
 
 DISTFILES +=
+
+HEADERS += \
+    print.h
