@@ -51,13 +51,21 @@ int student_cmp(t_student *l, t_student *r)
     return (s > 0 || (s == 0 && n > 0));
 }
 
+int is_bad_size(FILE * fp)
+{
+    fseek(fp, 0, SEEK_END);
+    size_t size_file = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+
+    return (size_file % sizeof(t_student));
+}
 
 int sort(char **args)
 {
     FILE *fin = fopen(args[2], "r+b");
     t_student s;
     t_student s2;
-    int ret = -1;
+    int ret = 53;
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
@@ -66,10 +74,11 @@ int sort(char **args)
     memset(&s2, 0, sizeof(s2));
     if (fin)
     {
+//        if (is_bad_size(fin))
         ret = 0;
-        while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
+        while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
-            while ((rd = fread(&s2, sizeof(s2), 1, fin)) || ret)
+            while ((rd = fread(&s2, sizeof(s2), 1, fin)) && !ret)
             {
                 if (student_cmp(&s, &s2))
                 {
@@ -98,14 +107,14 @@ int print(char **args)
     FILE *fin = fopen(args[2], "rb");
     FILE *fout = fopen(args[3], "wb");
     t_student s;
-    int ret = -1;
+    int ret = 53;
     int rd = 0;
 
     memset(&s, 0, sizeof(s));
     if (fin && fout)
     {
         ret = 0;
-        while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
+        while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
             if (strstr(s.surname, args[4]) == s.surname && !fwrite(&s, sizeof(s), 1, fout))
                 ret = -1;
@@ -141,7 +150,7 @@ int del(char **args)
     FILE *fin = fopen(args[2], "r+b");
     double average = get_average(fin);
     t_student s;
-    int ret = -1;
+    int ret = 53;
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
@@ -151,7 +160,7 @@ int del(char **args)
     {
         fseek(fin, 0, SEEK_SET);
         ret = 0;
-        while ((rd = fread(&s, sizeof(s), 1, fin)) || ret)
+        while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
             if ((s.a[0] + s.a[1] + s.a[2] + s.a[3]) / 4.0 >= average)
             {
