@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+int get_number_by_pos(FILE *fp, pos)
+{
+
+}
+
+void put_number_by_pos(FILE *fp, )
+{
+
+}
 
 int c(char *fname, int num)
 {
