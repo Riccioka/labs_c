@@ -175,7 +175,7 @@ int del(char **args)
 
 int extract_cmd(const char *arg)
 {
-    int ret = -53;
+    int ret = 53;
     int state = 0;
 
     while (*arg)
@@ -194,7 +194,7 @@ int extract_cmd(const char *arg)
 
 int main(int argc, char **argv)
 {
-    int ret = -53;
+    int ret = 53;
     int (*actions[])(char **) = { sort, print, del };
 
     if (argc > 2 && (ret = extract_cmd(argv[1])) >= 0
