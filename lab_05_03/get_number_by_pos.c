@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "get_number_by_pos.h"
 #include "put_number_by_pos.h"
 #include "c.h"
 #include "p.h"
 #include "s.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int get_number_by_pos(FILE *fp, size_t ind)
+bool failflag = false;
+
+int get_number_by_pos(FILE *fp, int pos)
 {
-    int num = 0;
-    size_t pos = ftell(fp);
-    fseek(fp, ind * sizeof(int), SEEK_SET);
-    fread(&num, sizeof(int), 1, fp);
-    fseek(fp, pos, SEEK_SET);
-    return num;
+    int n = 0;
+    fseek(fp, pos * sizeof(n), SEEK_SET);
+    if (!feof(fp)) failflag = (fread(&n, sizeof(n), 1, fp) == 0); else failflag = true;
+    return n;
 }
