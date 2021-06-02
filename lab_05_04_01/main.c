@@ -51,6 +51,7 @@ int student_cmp(t_student *l, t_student *r)
     return (s > 0 || (s == 0 && n > 0));
 }
 
+
 int sort(char **args)
 {
     FILE *fin = fopen(args[2], "r+b");
@@ -187,6 +188,8 @@ int extract_cmd(const char *arg)
         }
         else if (*arg == 'b' && state == 1)
             state = 2;
+        else
+            ret = 53;
         ++arg;
     }
     return ret;

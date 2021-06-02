@@ -17,8 +17,7 @@ int c(char *fname, int num)
     for (int i = 0; i < num; ++i)
     {
         n = rand();
-        if (fwrite(&n, sizeof(n), 1, fp) != 1)
-            return -1;
+        fwrite(&n, sizeof(n), 1, fp);
     }
     fclose(fp);
     return 0;

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 #include "get_number_by_pos.h"
 #include "put_number_by_pos.h"
@@ -12,7 +11,6 @@
 
 int main(int argc, char **argv)
 {
-    srand(time(NULL));
     if (argc > 4 || argc < 3 || strlen(argv[1]) != 1)
         return -1;
     if (argc == 4 && argv[1][0] == 'c')
