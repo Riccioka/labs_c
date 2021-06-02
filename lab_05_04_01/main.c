@@ -173,50 +173,32 @@ int del(char **args)
     return ret;
 }
 
-int extract_cmd(const char* arg) {
-    int ret = 0;
-    switch (*arg) {
-    case 's':
-        break;
-    case 'f':
-        ret = 1;
-        break;
-    case 'd':
-        ret = 2;
-        break;
-    default:
-        ret = 53;
-        break;
+int extract_cmd(const char *arg)
+{
+    int ret = -53;
+    int state = 0;
+
+    while (*arg)
+    {
+        if ((*arg == 's' || *arg == 'f' || *arg == 'd') && state == 0)
+        {
+            state = 1;
+            ret = 1 * (*arg == 'f') + 2 * (*arg == 'd');
+        }
+        else if (*arg == 'b' && state == 1)
+            state = 2;
+        ++arg;
     }
-    if (*(arg + 1) != 'b') ret = 53;
     return ret;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
+    int ret = -53;
     int (*actions[])(char **) = { sort, print, del };
-    int ret = 53;
-    if (argc > 2)
-    {
-        int ret = extract_cmd(argv[1]);
-        switch (ret)
-        {
-            case 0:
-            case 2:
-            {
-                if (argc == 3)
-                    ret = actions[ret](argv);
-                else ret = 53;
-                break;
-            }
-            case 1:
-            {
-                if (argc == 4)
-                    ret = actions[ret](argv);
-                else ret = 53;
-                break;
-            }
-        }
-    }
+
+    if (argc > 2 && (ret = extract_cmd(argv[1])) >= 0
+        && (argc == 3 || (argc == 5 && ret == 1)))
+        ret = actions[ret](argv);
     return ret;
 }
