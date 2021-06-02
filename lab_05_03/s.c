@@ -27,7 +27,7 @@ int s(char *fname)
         {
             int n1 = get_number_by_pos(fp, i);
             int n2 = get_number_by_pos(fp, j);
-            if (n1 < n2)
+            if (n1 > n2)
             {
                 put_number_by_pos(fp, j, n1);
                 put_number_by_pos(fp, i, n2);
