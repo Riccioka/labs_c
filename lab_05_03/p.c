@@ -2,23 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-bool failflag = false;
-
 int p(char *fname)
 {
     FILE *fp = fopen(fname, "rb");
+    size_t size = 0;
     int n = 0;
 
     if (!fp)
         return -1;
-    int i = 0;
-    while (!feof(fp))
-    {
-        failflag = false;
-        n = get_number_by_pos(fp, i);
-        if (!failflag) printf("%d ", n);
-        i++;
-    }
+
+    fseek(fp, 0, SEEK_END);
+    size = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    if (size % 4)
+        return -1;
+    while (fread(&n, sizeof(n), 1, fp) == 1)
+        printf("%d\n", n);
     fclose(fp);
     return 0;
 }
+

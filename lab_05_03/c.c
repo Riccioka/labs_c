@@ -17,8 +17,7 @@ int c(char *fname, int num)
     for (int i = 0; i < num; ++i)
     {
         n = rand();
-        printf("%d ", n);
-        if (put_number_by_pos(fp, i, n) != 1)
+        if (fwrite(&n, sizeof(n), 1, fp) != 1)
             return -1;
     }
     fclose(fp);
