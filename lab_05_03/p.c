@@ -13,7 +13,7 @@ int p(char *fname)
     {
         if (fread(&n, sizeof(n), 1, fp) != 1)
             return -1;
-        printf("%d ", n);
+        printf("%d\n", n);
     }
     fclose(fp);
     return 0;
