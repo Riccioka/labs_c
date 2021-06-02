@@ -15,8 +15,8 @@ int main(int argc, char **argv)
     if (argc == 4 && argv[1][0] == 'c')
         return c(argv[argc - 1], atoi(argv[2]));
     else if (argv[1][0] == 'p')
-        return p(argv[argc - 1]);
+        return 0;
     else if (argv[1][0] == 's')
-        return s(argv[argc - 1]);
+        return 0;
     return -1;
 }

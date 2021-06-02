@@ -18,8 +18,8 @@ int s(char *fname)
     fseek(fp, 0, SEEK_END);
     size = ftell(fp);
     fseek(fp, 0, SEEK_SET);
-//    if (size % 4)
-//        return -1;
+    if (size % 4)
+        return -1;
     count = size / 4;
     for (size_t i = 0; i < count; ++i)
     {
