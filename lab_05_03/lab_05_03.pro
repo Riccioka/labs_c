@@ -17,3 +17,6 @@ HEADERS += \
     p.h \
     put_number_by_pos.h \
     s.h
+
+DISTFILES += \
+    in.txt

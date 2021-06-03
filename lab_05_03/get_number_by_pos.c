@@ -13,6 +13,6 @@ int get_number_by_pos(FILE *fp, size_t ind)
     size_t pos = ftell(fp);
     fseek(fp, ind * sizeof(int), SEEK_SET);
     fread(&num, sizeof(int), 1, fp);
-    fseek(fp, pos, SEEK_SET);
+//    fseek(fp, pos, SEEK_SET);
     return num;
 }
