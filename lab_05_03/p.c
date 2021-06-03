@@ -11,6 +11,11 @@ int p(char *fname)
     if (!fp)
         return -1;
 
+    fseek(fp, 0, SEEK_SET);
+
+    if (getc(fp) == EOF)
+        return -1;
+
     fseek(fp, 0, SEEK_END);
     size = ftell(fp);
     fseek(fp, 0, SEEK_SET);
