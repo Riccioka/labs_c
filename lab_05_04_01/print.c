@@ -191,7 +191,7 @@ int del(char **args)
     if (fin)
     {
         fclose(fin);
-        ret = truncate(args[2], offset);
+        truncate(args[2], offset);
     }
     return ret;
 }
