@@ -18,7 +18,7 @@ int print(char *file_src, char *file_dst, char *substr)
     int ret = 53;
     int rd = 0;
     int count = 0;
-    int count1 = 0;
+//    int count1 = 0;
 
     memset(&s, 0, sizeof(s));
     if (fin && fout)
@@ -29,13 +29,13 @@ int print(char *file_src, char *file_dst, char *substr)
             if (strstr(s.surname, substr) == s.surname && !fwrite(&s, sizeof(s), 1, fout))
             {
                 ret = -1;
-                count1++;
+//                count1++;
             }
-            count++;
+//            count++;
         }
         ret = -(!ret && rd == 0 && !feof(fin));
     }
-    if (count == 0 || count1 == 0)
+    if (count == 0 /*|| count1 == 0*/)
         return -1;
 
     if (fin)
