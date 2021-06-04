@@ -37,7 +37,6 @@ int print(char *file_src, char *file_dst, char *substr)
 }
 
 
-
 double get_average(FILE *fin)
 {
     double average = 0;
@@ -59,7 +58,6 @@ void print_student(t_student *stud)
 {
     if (stud)
     {
-        // double sum = stud->a[0] + stud->a[1] + stud->a[2] + stud->a[3];
         printf("%s %s %d %d %d %d\n",
         stud->surname, stud->name,
         stud->a[0], stud->a[1], stud->a[2], stud->a[3]);
@@ -184,25 +182,3 @@ int del(char **args)
     }
     return ret;
 }
-
-//int extract_cmd(const char *arg)
-//{
-//    int ret = 53;
-//    int state = 0;
-
-//    while (*arg)
-//    {
-//        if ((*arg == 's' || *arg == 'f' || *arg == 'd') && state == 0)
-//        {
-//            state = 1;
-//            ret = 1 * (*arg == 'f') + 2 * (*arg == 'd');
-//        }
-//        else if (*arg == 'b' && state == 1)
-//            state = 2;
-//        else
-//            ret = 53;
-//        ++arg;
-//    }
-//    return ret;
-//}
-
