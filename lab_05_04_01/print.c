@@ -15,7 +15,7 @@ int print(char *file_src, char *file_dst, char *substr)
     FILE *fin = fopen(file_src, "rb");
     FILE *fout = fopen(file_dst, "wb");
     t_student s;
-    int ret = 53;
+    int ret = 0;
     int rd = 0;
     int count = 0;
 
@@ -29,7 +29,7 @@ int print(char *file_src, char *file_dst, char *substr)
                 ret = -1;
             count++;
         }
-        ret = -(!ret && rd == 0 && !feof(fin));
+//        ret = -(!ret && rd == 0 && !feof(fin));
     }
     if (count == 0)
         return -1;
