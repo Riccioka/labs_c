@@ -124,9 +124,17 @@ int sort(char **args)
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
+    size_t size = 0;
 
     memset(&s, 0, sizeof(s));
     memset(&s2, 0, sizeof(s2));
+
+    fseek(fin, 0, SEEK_END);
+    size = ftell(fin);
+    fseek(fin, 0, SEEK_SET);
+    if (size % 4)
+        return -1;
+
     if (fin)
     {
 //        if (is_bad_size(fin))
@@ -167,8 +175,16 @@ int del(char **args)
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
+    size_t size = 0;
 
     memset(&s, 0, sizeof(s));
+
+    fseek(fin, 0, SEEK_END);
+    size = ftell(fin);
+    fseek(fin, 0, SEEK_SET);
+    if (size % 4)
+        return -1;
+
     if (fin && average > 0.0)
     {
         fseek(fin, 0, SEEK_SET);
