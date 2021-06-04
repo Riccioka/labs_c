@@ -18,15 +18,9 @@ int print(char *file_src, char *file_dst, char *substr)
     int ret = 0;
     int rd = 0;
     int count = 0;
-    size_t size = 0;
 
     memset(&s, 0, sizeof(s));
 
-    fseek(fin, 0, SEEK_END);
-    size = ftell(fin);
-    fseek(fin, 0, SEEK_SET);
-    if (size % 4)
-        return -1;
 
     if (fin && fout)
     {
@@ -124,16 +118,9 @@ int sort(char **args)
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
-    size_t size = 0;
 
     memset(&s, 0, sizeof(s));
     memset(&s2, 0, sizeof(s2));
-
-    fseek(fin, 0, SEEK_END);
-    size = ftell(fin);
-    fseek(fin, 0, SEEK_SET);
-    if (size % 4)
-        return -1;
 
     if (fin)
     {
@@ -175,15 +162,8 @@ int del(char **args)
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
-    size_t size = 0;
 
     memset(&s, 0, sizeof(s));
-
-    fseek(fin, 0, SEEK_END);
-    size = ftell(fin);
-    fseek(fin, 0, SEEK_SET);
-    if (size % 4)
-        return -1;
 
     if (fin && average > 0.0)
     {
