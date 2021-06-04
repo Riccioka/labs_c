@@ -18,7 +18,8 @@ int print(char **args)
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
-            if (strstr(s.surname, args[4]) == s.surname && !fwrite(&s, sizeof(s), 1, fout))
+            if (strstr(s.surname, args[4]) == s.surname &&
+                !fwrite(&s, sizeof(s), 1, fout))
                 ret = -1;
         }
         ret = -(!ret && rd == 0 && !feof(fin));
