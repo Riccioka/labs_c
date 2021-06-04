@@ -5,8 +5,6 @@
 
 int main(int argc, char **argv)
 {
-//    int (*actions[])(char **) = { sort, print, del, NULL };
-
     if (argc == 5)
     {
         if (strcmp(argv[1], "fb") == 0)
@@ -37,5 +35,5 @@ int main(int argc, char **argv)
 //    if (argc > 2 && (ret = extract_cmd(argv[1])) >= 0
 //        && (argc == 3 || (argc == 5 && ret == 1)))
 //        ret = actions[ret](argv);
-    return 0;
+    return 53;
 }

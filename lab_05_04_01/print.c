@@ -24,8 +24,7 @@ int print(char *file_src, char *file_dst, char *substr)
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
-            if (strstr(s.surname, substr) == s.surname &&
-                !fwrite(&s, sizeof(s), 1, fout))
+            if (strstr(s.surname, substr) == s.surname && !fwrite(&s, sizeof(s), 1, fout))
                 ret = -1;
         }
         ret = -(!ret && rd == 0 && !feof(fin));
