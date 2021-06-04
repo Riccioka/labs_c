@@ -112,7 +112,7 @@ int sort(char **args)
     FILE *fin = fopen(args[2], "r+b");
     t_student s;
     t_student s2;
-    int ret = 53;
+    int ret = 0;
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
@@ -142,7 +142,7 @@ int sort(char **args)
             offset += sizeof(s);
             fseek(fin, offset, SEEK_SET);
         }
-        ret = -(!ret && rd == 0 && !feof(fin));
+//        ret = -(!ret && rd == 0 && !feof(fin));
         print_students(fin);
     }
     if (fin)
