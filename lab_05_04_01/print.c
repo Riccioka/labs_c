@@ -155,7 +155,7 @@ int del(char **args)
     FILE *fin = fopen(args[2], "r+b");
     double average = get_average(fin);
     t_student s;
-    int ret = 53;
+    int ret = 0;
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
@@ -177,13 +177,13 @@ int del(char **args)
                 fseek(fin, current_pos, SEEK_SET);
             }
         }
-        ret = -(!ret && rd == 0 && !feof(fin));
+//        ret = -(!ret && rd == 0 && !feof(fin));
     }
 
     if (fin)
     {
         fclose(fin);
-        ret = truncate(args[2], offset);
+        truncate(args[2], offset);
     }
     return ret;
 }
