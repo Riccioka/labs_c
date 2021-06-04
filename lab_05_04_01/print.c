@@ -18,8 +18,16 @@ int print(char *file_src, char *file_dst, char *substr)
     int ret = 0;
     int rd = 0;
     int count = 0;
+    size_t size = 0;
 
     memset(&s, 0, sizeof(s));
+
+    fseek(fin, 0, SEEK_END);
+    size = ftell(fin);
+    fseek(fin, 0, SEEK_SET);
+    if (size % 4)
+        return -1;
+
     if (fin && fout)
     {
         ret = 0;
