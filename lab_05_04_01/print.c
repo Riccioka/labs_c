@@ -18,6 +18,7 @@ int print(char *file_src, char *file_dst, char *substr)
     int ret = 53;
     int rd = 0;
     int count = 0;
+    int count1 = 0;
 
     memset(&s, 0, sizeof(s));
     if (fin && fout)
@@ -26,12 +27,15 @@ int print(char *file_src, char *file_dst, char *substr)
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
             if (strstr(s.surname, substr) == s.surname && !fwrite(&s, sizeof(s), 1, fout))
+            {
                 ret = -1;
+                count1++;
+            }
             count++;
         }
         ret = -(!ret && rd == 0 && !feof(fin));
     }
-    if (count == 0)
+    if (count == 0 || count1 == 0)
         return -1;
 
     if (fin)
@@ -63,7 +67,7 @@ void print_student(t_student *stud)
 {
     if (stud)
     {
-        printf("%s %s %d %d %d %d\n",
+        printf("%s\n%s\n%d\n%d\n%d\n%d\n",
         stud->surname, stud->name,
         stud->a[0], stud->a[1], stud->a[2], stud->a[3]);
     }
