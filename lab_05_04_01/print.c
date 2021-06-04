@@ -145,7 +145,7 @@ int sort(char **args)
             offset += sizeof(s);
             fseek(fin, offset, SEEK_SET);
         }
-//        ret = -(!ret && rd == 0 && !feof(fin));
+        ret = -(!ret && rd == 0 && !feof(fin));
         print_students(fin);
     }
     if (fin)
@@ -181,7 +181,7 @@ int del(char **args)
                 fseek(fin, current_pos, SEEK_SET);
             }
         }
-//        ret = -(!ret && rd == 0 && !feof(fin));
+        ret = -(!ret && rd == 0 && !feof(fin));
     }
 
     if (fin)
