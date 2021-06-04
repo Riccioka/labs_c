@@ -11,7 +11,7 @@ typedef struct s_student
 
 int sort(char **args);
 
-int print(char **args);
+int print(char *file_src, char *file_dst, char *substr);
 
 int extract_cmd(const char *arg);
 

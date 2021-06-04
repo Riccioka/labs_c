@@ -10,10 +10,10 @@
 #include <sys/types.h>
 #include "print.h"
 
-int print(char **args)
+int print(char *file_src, char *file_dst, char *substr)
 {
-    FILE *fin = fopen(args[2], "rb");
-    FILE *fout = fopen(args[3], "wb");
+    FILE *fin = fopen(file_src, "rb");
+    FILE *fout = fopen(file_dst, "wb");
     t_student s;
     int ret = 53;
     int rd = 0;
@@ -24,7 +24,7 @@ int print(char **args)
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
-            if (strstr(s.surname, args[4]) == s.surname &&
+            if (strstr(s.surname, substr) == s.surname &&
                 !fwrite(&s, sizeof(s), 1, fout))
                 ret = -1;
         }
@@ -186,24 +186,24 @@ int del(char **args)
     return ret;
 }
 
-int extract_cmd(const char *arg)
-{
-    int ret = 53;
-    int state = 0;
+//int extract_cmd(const char *arg)
+//{
+//    int ret = 53;
+//    int state = 0;
 
-    while (*arg)
-    {
-        if ((*arg == 's' || *arg == 'f' || *arg == 'd') && state == 0)
-        {
-            state = 1;
-            ret = 1 * (*arg == 'f') + 2 * (*arg == 'd');
-        }
-        else if (*arg == 'b' && state == 1)
-            state = 2;
-        else
-            ret = 53;
-        ++arg;
-    }
-    return ret;
-}
+//    while (*arg)
+//    {
+//        if ((*arg == 's' || *arg == 'f' || *arg == 'd') && state == 0)
+//        {
+//            state = 1;
+//            ret = 1 * (*arg == 'f') + 2 * (*arg == 'd');
+//        }
+//        else if (*arg == 'b' && state == 1)
+//            state = 2;
+//        else
+//            ret = 53;
+//        ++arg;
+//    }
+//    return ret;
+//}
 
