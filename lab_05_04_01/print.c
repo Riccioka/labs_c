@@ -183,7 +183,7 @@ int del(char **args)
     if (fin)
     {
         fclose(fin);
-        truncate(args[2], offset);
+        ret = truncate(args[2], offset);
     }
     return ret;
 }
