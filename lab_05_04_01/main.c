@@ -37,5 +37,5 @@ int main(int argc, char **argv)
 //    if (argc > 2 && (ret = extract_cmd(argv[1])) >= 0
 //        && (argc == 3 || (argc == 5 && ret == 1)))
 //        ret = actions[ret](argv);
-    return 53;
+    return 0;
 }
