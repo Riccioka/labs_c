@@ -4,6 +4,12 @@
 #include <sys/types.h>
 #include "print.h"
 
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include "print.h"
+
 int print(char **args)
 {
     FILE *fin = fopen(args[2], "rb");
@@ -54,10 +60,10 @@ void print_student(t_student *stud)
 {
     if (stud)
     {
-        double sum = stud->a[0] + stud->a[1] + stud->a[2] + stud->a[3];
-        printf("%s %s %d %d %d %d - %lf\n",
+        // double sum = stud->a[0] + stud->a[1] + stud->a[2] + stud->a[3];
+        printf("%s %s %d %d %d %d\n",
         stud->surname, stud->name,
-        stud->a[0], stud->a[1], stud->a[2], stud->a[3], sum / 4.0);
+        stud->a[0], stud->a[1], stud->a[2], stud->a[3]);
     }
 }
 
@@ -78,7 +84,6 @@ void print_students(FILE *fin)
         count += 4;
         print_student(&stud);
     }
-    printf("AVERAGE: %lf\n", average / count);
     fseek(fin, 0, SEEK_SET);
 }
 
@@ -136,6 +141,7 @@ int sort(char **args)
             fseek(fin, offset, SEEK_SET);
         }
         ret = -(!ret && rd == 0 && !feof(fin));
+        print_students(fin);
     }
     if (fin)
         fclose(fin);
@@ -200,3 +206,4 @@ int extract_cmd(const char *arg)
     }
     return ret;
 }
+
