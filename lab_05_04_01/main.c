@@ -19,14 +19,14 @@ int main(int argc, char **argv)
     {
         if (strcmp(argv[1], "sb") == 0)
             if (sort(&argv[2]) == 0)
-                return 53;
-            else
-                return 53;
-        else if (strcmp(argv[1], "db") == 0)
-            if (del(&argv[2]) == 0)
                 return 0;
             else
                 return -1;
+        else if (strcmp(argv[1], "db") == 0)
+            if (del(&argv[2]) == 0)
+                return 53;
+            else
+                return 53;
         else
             return 53;
     }
