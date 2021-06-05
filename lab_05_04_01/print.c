@@ -32,7 +32,7 @@ int print(char *file_src, char *file_dst, char *substr)
     if (fin && fout && !bad_size(fin))
     {
         ret = 0;
-        while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
+        while ((rd = fread(&s, sizeof(s), 1, fin)))
         {
             if (strstr(s.surname, substr) == s.surname)
             {
@@ -40,16 +40,15 @@ int print(char *file_src, char *file_dst, char *substr)
                 count++;
             }
         }
+        if (!count)
+            ret = -1;
     }
-    if (!count)
-        ret = -1;
     if (fin)
         fclose(fin);
     if (fout)
         fclose(fout);
     return ret;
 }
-
 
 double get_average(FILE *fin)
 {
@@ -65,14 +64,15 @@ double get_average(FILE *fin)
         average += s.a[0] + s.a[1] + s.a[2] + s.a[3];
         count += 4;
     }
-    return (feof(fin) && count) ? (average / count) : 0;
+    return count ? (average / count) : 0;
 }
 
 void print_student(t_student *stud)
 {
     if (stud)
     {
-        printf("%s\n%s\n%d%d%d%d\n",
+        printf("%s\n%s\n%d\n%d\n%d\n%d\n",
+        // printf("%s %s %d %d %d %d\n",
         stud->surname, stud->name,
         stud->a[0], stud->a[1], stud->a[2], stud->a[3]);
     }
@@ -107,9 +107,9 @@ int student_cmp(t_student *l, t_student *r)
     return (s > 0 || (s == 0 && n > 0));
 }
 
-int sort(char **args)
+int sort(char *args)
 {
-    FILE *fin = fopen(args[2], "r+b");
+    FILE *fin = fopen(args, "r+b");
     t_student s;
     t_student s2;
     int ret = -1;
@@ -147,9 +147,9 @@ int sort(char **args)
     return ret;
 }
 
-int del(char **args)
+int del(char *args)
 {
-    FILE *fin = fopen(args[2], "r+b");
+    FILE *fin = fopen(args, "r+b");
     double average = get_average(fin);
     t_student s;
     int ret = -1;
@@ -158,12 +158,11 @@ int del(char **args)
     size_t current_pos = 0;
 
     memset(&s, 0, sizeof(s));
-
     if (fin && !bad_size(fin))
     {
         fseek(fin, 0, SEEK_SET);
         ret = 0;
-        while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
+        while ((rd = fread(&s, sizeof(s), 1, fin)))
         {
             if ((s.a[0] + s.a[1] + s.a[2] + s.a[3]) / 4.0 >= average)
             {
@@ -178,7 +177,7 @@ int del(char **args)
     if (fin)
     {
         fclose(fin);
-        truncate(args[2], offset);
+        truncate(args, offset);
     }
     return ret;
 }
