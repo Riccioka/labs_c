@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        bad_size.c \
         del.c \
         main.c \
         print.c \
@@ -12,6 +13,7 @@ SOURCES += \
 DISTFILES +=
 
 HEADERS += \
+    bad_size.h \
     del.h \
     print.h \
     sort.h \
