@@ -72,7 +72,7 @@ void print_student(t_student *stud)
 {
     if (stud)
     {
-        printf("%s\n%s\n%d\n%d\n%d\n%d\n",
+        printf("%s\n%s\n%d %d %d %d\n",
         stud->surname, stud->name,
         stud->a[0], stud->a[1], stud->a[2], stud->a[3]);
     }
