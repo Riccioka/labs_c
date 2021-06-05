@@ -2,40 +2,40 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include "print.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include "print.h"
+typedef struct s_student
+{
+    char surname[26];
+    char name[11];
+    unsigned int a[4];
+}				t_student;
+
 
 int print(char *file_src, char *file_dst, char *substr)
 {
     FILE *fin = fopen(file_src, "rb");
     FILE *fout = fopen(file_dst, "wb");
     t_student s;
-    int ret = 0;
+    int ret = -1;
     int rd = 0;
     int count = 0;
 
     memset(&s, 0, sizeof(s));
-
-
     if (fin && fout)
     {
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
-            if (strstr(s.surname, substr) == s.surname && !fwrite(&s, sizeof(s), 1, fout))
-                ret = -1;
-            count++;
+            if (strstr(s.surname, substr) == s.surname)
+            {
+                if (!fwrite(&s, sizeof(s), 1, fout))
+                    ret = -1;
+                count++;
+            }
         }
-//        ret = -(!ret && rd == 0 && !feof(fin));
+        if (!feof(fin) || !count || rd)
+            ret = -1;
     }
-    if (count == 0)
-        return -1;
-
     if (fin)
         fclose(fin);
     if (fout)
@@ -114,7 +114,7 @@ int sort(char **args)
     FILE *fin = fopen(args[2], "r+b");
     t_student s;
     t_student s2;
-    int ret = 0;
+    int ret = -1;
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
@@ -122,9 +122,8 @@ int sort(char **args)
     memset(&s, 0, sizeof(s));
     memset(&s2, 0, sizeof(s2));
 
-    if (fin)
+    if (fin && !is_bad_size(fin))
     {
-//        if (is_bad_size(fin))
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
@@ -145,7 +144,8 @@ int sort(char **args)
             offset += sizeof(s);
             fseek(fin, offset, SEEK_SET);
         }
-        ret = -(!ret && rd == 0 && !feof(fin));
+        if (rd)
+            ret = -1;
         print_students(fin);
     }
     if (fin)
@@ -158,7 +158,7 @@ int del(char **args)
     FILE *fin = fopen(args[2], "r+b");
     double average = get_average(fin);
     t_student s;
-    int ret = 0;
+    int ret = -1;
     int rd = 0;
     size_t offset = 0;
     size_t current_pos = 0;
@@ -181,9 +181,9 @@ int del(char **args)
                 fseek(fin, current_pos, SEEK_SET);
             }
         }
-        ret = -(!ret && rd == 0 && !feof(fin));
+        if (!feof(fin) || rd)
+            ret = -1;
     }
-
     if (fin)
     {
         fclose(fin);
