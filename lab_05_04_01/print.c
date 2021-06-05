@@ -41,6 +41,8 @@ int print(char *file_src, char *file_dst, char *substr)
             }
         }
     }
+    if (!count)
+        ret = -1;
     if (fin)
         fclose(fin);
     if (fout)
