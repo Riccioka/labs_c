@@ -159,7 +159,7 @@ int del(char **args)
 
     memset(&s, 0, sizeof(s));
 
-    if (fin && average > 0.0 && !bad_size(fin))
+    if (fin && !bad_size(fin))
     {
         fseek(fin, 0, SEEK_SET);
         ret = 0;
