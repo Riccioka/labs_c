@@ -13,7 +13,6 @@ int process(FILE *f, int *m)
     int max = INT_MIN;
     int max_ind = -1;
 
-//    if (f == NULL || feof(f) || !m)
     if (!f || feof(f))
         return ERROR_OPEN;
     while ((res = fscanf(f, "%d", &num)) == 1)

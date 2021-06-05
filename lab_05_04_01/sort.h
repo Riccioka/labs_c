@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "struct.h"
 
+int bad_size(FILE *fp);
 
 void print_student(t_student *stud);
 
