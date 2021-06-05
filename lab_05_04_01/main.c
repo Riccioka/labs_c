@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "print.h"
-
+#include "sort.h"
+#include "del.h"
 
 int main(int argc, char **argv)
 {
