@@ -3,13 +3,21 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-typedef struct s_student
+typedef struct 		s_student
 {
-    char surname[26];
-    char name[11];
-    unsigned int a[4];
-}				t_student;
+    char			surname[26];
+    char			name[11];
+    unsigned int	a[4];
+}					t_student;
 
+int bad_size(FILE *fp)
+{
+    fseek(fp, 0, SEEK_END);
+    size_t size_file = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+
+    return (size_file % sizeof(t_student));
+}
 
 int print(char *file_src, char *file_dst, char *substr)
 {
@@ -21,20 +29,17 @@ int print(char *file_src, char *file_dst, char *substr)
     int count = 0;
 
     memset(&s, 0, sizeof(s));
-    if (fin && fout)
+    if (fin && fout && !bad_size(fin))
     {
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
         {
             if (strstr(s.surname, substr) == s.surname)
             {
-                if (!fwrite(&s, sizeof(s), 1, fout))
-                    ret = -1;
+                fwrite(&s, sizeof(s), 1, fout);
                 count++;
             }
         }
-        if (!feof(fin) || !count || rd)
-            ret = -1;
     }
     if (fin)
         fclose(fin);
@@ -65,7 +70,7 @@ void print_student(t_student *stud)
 {
     if (stud)
     {
-        printf("%s\n%s\n%d %d %d %d\n",
+        printf("%s\n%s\n%d\n%d\n%d\n%d\n",
         stud->surname, stud->name,
         stud->a[0], stud->a[1], stud->a[2], stud->a[3]);
     }
@@ -100,15 +105,6 @@ int student_cmp(t_student *l, t_student *r)
     return (s > 0 || (s == 0 && n > 0));
 }
 
-int is_bad_size(FILE * fp)
-{
-    fseek(fp, 0, SEEK_END);
-    size_t size_file = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-
-    return (size_file % sizeof(t_student));
-}
-
 int sort(char **args)
 {
     FILE *fin = fopen(args[2], "r+b");
@@ -122,7 +118,7 @@ int sort(char **args)
     memset(&s, 0, sizeof(s));
     memset(&s2, 0, sizeof(s2));
 
-    if (fin && !is_bad_size(fin))
+    if (fin && !bad_size(fin))
     {
         ret = 0;
         while ((rd = fread(&s, sizeof(s), 1, fin)) && !ret)
@@ -133,19 +129,15 @@ int sort(char **args)
                 {
                     current_pos = ftell(fin) - sizeof(s2);
                     fseek(fin, offset, SEEK_SET);
-                    if (!fwrite(&s2, sizeof(s2), 1, fin))
-                        ret = -1;
+                    fwrite(&s2, sizeof(s2), 1, fin);
                     fseek(fin, current_pos, SEEK_SET);
-                    if (!ret && !fwrite(&s, sizeof(s), 1, fin))
-                        ret = -1;
+                    fwrite(&s, sizeof(s), 1, fin);
                     s = s2;
                 }
             }
             offset += sizeof(s);
             fseek(fin, offset, SEEK_SET);
         }
-        if (rd)
-            ret = -1;
         print_students(fin);
     }
     if (fin)
@@ -165,7 +157,7 @@ int del(char **args)
 
     memset(&s, 0, sizeof(s));
 
-    if (fin && average > 0.0)
+    if (fin && average > 0.0 && !bad_size(fin))
     {
         fseek(fin, 0, SEEK_SET);
         ret = 0;
@@ -175,14 +167,11 @@ int del(char **args)
             {
                 current_pos = ftell(fin);
                 fseek(fin, offset, SEEK_SET);
-                if (!fwrite(&s, sizeof(s), 1, fin))
-                    ret = -1;
+                fwrite(&s, sizeof(s), 1, fin);
                 offset += sizeof(s);
                 fseek(fin, current_pos, SEEK_SET);
             }
         }
-        if (!feof(fin) || rd)
-            ret = -1;
     }
     if (fin)
     {
