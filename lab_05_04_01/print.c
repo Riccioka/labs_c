@@ -3,11 +3,11 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-typedef struct 		s_student
+typedef struct s_student
 {
-    char			surname[26];
-    char			name[11];
-    unsigned int	a[4];
+    char surname[26];
+    char name[11];
+    unsigned int a[4];
 }					t_student;
 
 int bad_size(FILE *fp)
