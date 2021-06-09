@@ -11,7 +11,7 @@
 int read_mat(int a[][M], int *n, int *m)
 {
     if (scanf("%d", n) <= 0 || *n > 10 || *n < 1 ||
-            scanf("%d", m) <= 0 || *m > 10 || *m < 1)
+            scanf("%d", m) <= 0 || *m > 10 || *m < 1 || *n != *m)
         return INVALID_SIZES;
     for (int i = 0; i < *n; i++)
         for (int j = 0; j < *m; j++)

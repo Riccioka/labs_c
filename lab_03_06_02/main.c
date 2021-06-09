@@ -7,10 +7,8 @@
 
 int read_size(int *n, int *m)
 {
-    if (scanf("%d", n) <= 0 ||
-        *n > 10 || *n < 1 ||
-        scanf("%d", m) <= 0 ||
-        *m > 10 || *m < 1)
+    if (scanf("%d", n) <= 0 || *n > 10 || *n < 1 ||
+        scanf("%d", m) <= 0 || *m > 10 || *m < 1)
         return INVALID_SIZES;
     return 0;
 }
