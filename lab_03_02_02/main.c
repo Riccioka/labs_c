@@ -23,7 +23,7 @@ int read_mat(int a[][M], int *n, int *m)
 
 void print_mat(int a[][M], int size, int m)
 {
-    printf("HERE_PRINT\n");
+//    printf("HERE_PRINT\n");
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < m; j++)
@@ -46,10 +46,12 @@ int sum_digits(int n)
 
 void dop_str(int a[][M], int n, int m, int start)
 {
-    printf("HERE_DOP\n");
+//    printf("HERE_DOP\n");
     for (int i = n + 1; i > start; i--)
         for (int j = 0; j < m; j++)
+        {
             a[i][j] = a[i-1][j];
+        }
     for (int j = 0; j < m; j++)
         a[start][j] = -1;
 }
@@ -66,14 +68,14 @@ int main()
 
     while (i != n)
     {
-        printf("SIZE = %d\n", size);
-         printf("I = %d\n", i);
+//        printf("SIZE = %d\n", size);
+//        printf("I = %d\n", i);
         nchet = 0;
         printf("HERE_EL:\n");
         for (int j = 0; j < m; j++)
         {
             nchet += (sum_digits(a[i + size - n][j]) % 2);
-            printf("EL = %d\n", a[i + size - n][j]);
+//            printf("EL = %d\n", a[i + size - n][j]);
         }
         if (nchet > 1)
         {
@@ -81,9 +83,9 @@ int main()
             size++;
         }
         i++;
-        print_mat(a, size, m);
+//        print_mat(a, size, m);
     }
-    printf("HERE_FIN_PRINT\n");
+//    printf("HERE_FIN_PRINT\n");
     print_mat(a, size, m);
 
     return 0;
