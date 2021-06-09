@@ -66,9 +66,7 @@ int main()
             nchet += (sum_digits(a[i][j]) % 2);
 
         if (nchet > 1)
-        {
             dop_str();
-        }
     }
     return 0;
 }

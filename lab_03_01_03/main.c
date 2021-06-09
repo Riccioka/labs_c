@@ -55,6 +55,7 @@ int mono(int a[N][M], int n, int m, int *b)
         else
             b[i] = 0;
     }
+    return 0;
 }
 
 void print_arr(int *arr, int size)
