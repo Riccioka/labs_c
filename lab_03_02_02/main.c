@@ -43,14 +43,12 @@ int sum_digits(int n)
     return sum;
 }
 
-void dop_str(int a[][M], int n, int start)
+void dop_str(int a[][M], int n, int m, int start)
 {
     for (int i = n + 1; i > start; i--)
-    {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < m; j++)
             a[i][j] = a[i-1][j];
-    }
-    for (int j = 0; j < n; j++)
+    for (int j = 0; j < m; j++)
         a[start][j] = -1;
 }
 
@@ -72,7 +70,7 @@ int main()
             nchet += (sum_digits(a[i + size - n][j]) % 2);
         if (nchet > 1)
         {
-            dop_str(a, n + size, i + size - n);
+            dop_str(a, n + size, m, i + size - n);
             size++;
         }
         i++;
