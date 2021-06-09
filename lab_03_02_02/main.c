@@ -8,7 +8,7 @@
 #define INVALID_SIZES 1
 #define INVALID_DATA -1
 
-int read_mat1(int a[][M], int *n, int *m)
+int read_mat(int a[][M], int *n, int *m)
 {
     if (scanf("%d", n) <= 0 || *n > 10 || *n < 1 ||
             scanf("%d", m) <= 0 || *m > 10 || *m < 1)
@@ -21,20 +21,16 @@ int read_mat1(int a[][M], int *n, int *m)
 }
 
 
-void print_mat1(int a[][10], int size, int m)
+void print_mat(int a[][M], int size, int n)
 {
     for (int i = 0; i < size; i++)
     {
-        for (int j = 0; j < m; j++)
+        for (int j = 0; j < n; j++)
             printf("%d ", a[i][j]);
         printf("\n");
     }
 }
 
-void dop_str()
-{
-
-}
 
 int sum_digits(int n)
 {
@@ -47,26 +43,43 @@ int sum_digits(int n)
     return sum;
 }
 
+void dop_str(int a[][M], int n, int start)
+{
+    for (int i = n + 1; i > start; i--)
+    {
+        for (int j = 0; j < n; j++)
+            a[i][j] = a[i-1][j];
+    }
+    for (int j = 0; j < n; j++)
+        a[start][j] = -1;
+}
+
 int main()
 {
-    int n = 0;
-    int m = 0;
+    int n = 0, m = 0, nchet = 0, i = 0;
     int a[N][M];
-    int nchet = 0;
 
-    if (read_mat1(a, &n, &m))
+    if (read_mat(a, &n, &m))
         return INVALID_DATA;
 
-    for (int i = 0; i < n; i++)
+    int size = n;
+
+    while (i != size)
     {
         nchet = 0;
 
         for (int j = 0; j < m; j++)
-            nchet += (sum_digits(a[i][j]) % 2);
-
+            nchet += (sum_digits(a[i + size - n][j]) % 2);
         if (nchet > 1)
-            dop_str();
+        {
+            dop_str(a, n + size, i + size - n);
+            size++;
+        }
+        i++;
     }
+
+    print_mat(a, size, n);
+
     return 0;
 }
 
