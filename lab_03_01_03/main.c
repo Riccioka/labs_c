@@ -7,19 +7,15 @@
 #define INVALID_SIZES 1
 #define INVALID_DATA -1
 
-int read_arr(int a[N][M], int n, int m)
+int read_mat(int a[][M], int *n, int *m)
 {
-    if (scanf("%d", &n) <= 0 || n > N || n < 1 ||
-            scanf("%d", &m) <= 0 || m > M || m < 1)
+    if (scanf("%d", n) <= 0 || *n > 10 || *n < 1 ||
+            scanf("%d", m) <= 0 || *m > 10 || *m < 1)
         return INVALID_SIZES;
-
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-            if (scanf("%d", &a[i][j]) <= 0)
-            {
-                printf("invalid element value");
+    for (int i = 0; i < *n; i++)
+        for (int j = 0; j < *m; j++)
+            if (scanf("%d", &a[i][j]) != 1)
                 return INVALID_ELEMENT_VALUE;
-            }
     return 0;
 }
 
@@ -72,7 +68,7 @@ int main()
     int b[SIZE];
     int i;
 
-    if (read_arr(a, n, m))
+    if (read_mat(a, &n, &m))
         return INVALID_DATA;
 
     if (m == 1)
