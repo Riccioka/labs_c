@@ -2,14 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "my_strtok.h"
-#include "my_strlen.h"
+//#define
 
 int main(void)
 {
     char str[1000] = { 0 }, words[256][17], len_words[256];
     char new_str[256] = { 0 };
-//    char *res = (char*)str;
     int symbol[17];
     char *word = NULL;
     int len = 0, i = 0, len_new = 0, flag = 1;
@@ -19,7 +17,7 @@ int main(void)
         return 1;
 
     int f = 0;
-    for (int i = 0; i < my_strlen(str); i++)
+    for (unsigned long long i = 0; i < strlen(str); i++)
         if (!isspace(str[i]))
             f = 1;
     if (f == 0)

@@ -4,10 +4,6 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.c \
-        my_strlen.c \
-        my_strtok.c
+        main.c
 
-HEADERS += \
-    my_strlen.h \
-    my_strtok.h
+HEADERS +=
