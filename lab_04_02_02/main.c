@@ -35,24 +35,15 @@ int main(void)
             fst_str[len_fst][i] = word[i];
 
         lens_str[len_fst] = len;
-
         len_fst++;
-
-//        printf("%s %s\n", word_copy, (strcmp_mod(find, word_copy, len) ? "yes" : "no"));
         remove_word_from_str(res, word, len);
-
     }
 
     printf("Result: ");
 
     for (i = 0; i < len_fst; i++)
-    {
-//        printf("fst: %s\n", fst_str[i]);
         printf("%s %s\n", fst_str[i], (strcmp_mod(find, fst_str[i], lens_str[i]) ? "yes" : "no"));
-    }
 
     return 0;
 }
 
-
-//qwe  er    c  sf dsf      df g   aefegewr ddefrge df s   adf

@@ -6,6 +6,5 @@
 int main(void)
 {
     char str[] = "example";
-    return(strpbrk(str, "ex") != my_strpbrk(str, "ex"));
-//    return 0;
+    return (strpbrk(str, "ex") != my_strpbrk(str, "ex"));
 }
