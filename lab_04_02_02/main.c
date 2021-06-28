@@ -5,20 +5,10 @@
 #include "strcmp_mod.h"
 #include "remove_word_from_str.h"
 
-int main(void)
+int create_fst_str(char fst_str[][17], char *lens_str, char *res)
 {
-    char str[256], find[256];
-    char fst_str[256][17], lens_str[256];
-//    char words_arr[][17];
-    char *res = (char*)str;
     char *words = NULL;
-    int len = 0, len_fst = 0, i = 0;
-
-
-    if (scanf("%256[^\n]%*c", str) != 1)
-        return 1;
-    if (scanf("%256[^\n]%*c", find) != 1)
-        return 1;
+    int len = 0, i = 0, len_fst = 0;
 
     while ((words = my_strtok(&res, ",;:-.!? ", &len)))
     {
@@ -38,6 +28,22 @@ int main(void)
         len_fst++;
         remove_word_from_str(res, word, len);
     }
+    return len_fst;
+}
+
+int main(void)
+{
+    char str[256], find[256];
+    char fst_str[256][17], lens_str[256];
+    char *res = (char*)str;
+    int i = 0;
+
+    if (scanf("%256[^\n]%*c", str) != 1)
+        return 1;
+    if (scanf("%256[^\n]%*c", find) != 1)
+        return 1;
+
+    int len_fst = create_fst_str(fst_str, lens_str, res);
 
     printf("Result: ");
 
@@ -46,4 +52,3 @@ int main(void)
 
     return 0;
 }
-

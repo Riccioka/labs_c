@@ -5,76 +5,74 @@
 #include "my_strtok.h"
 #include "my_strlen.h"
 
-typedef struct s_word
-{
-    char *word;
-    size_t len;
-} t_word;
-
-typedef struct s_sentence
-{
-    t_word *words;
-    size_t wc;
-} t_sentence;
-
 int main(void)
 {
-    char str[1000] = { 0 };
-    t_sentence s = { .words = NULL, .wc = 0 };
-    char *res = (char*)str;
+    char str[1000] = { 0 }, words[256][17], len_words[256];
+    char new_str[256] = { 0 };
+//    char *res = (char*)str;
+    int symbol[17];
     char *word = NULL;
-    int len = 0;
+    int len = 0, i = 0, len_new = 0, flag = 1;
 
     scanf("%1000[^\n]%*c", str);
-    if (my_strlen(str) > 256)
+    if (strlen(str) > 256)
         return 1;
+
     int f = 0;
     for (int i = 0; i < my_strlen(str); i++)
         if (!isspace(str[i]))
             f = 1;
     if (f == 0)
         return -1;
-    while ((word = my_strtok(&res, ",;:-.!? ", &len)))
-    {
-        if (!len)
-            continue;
-        s.wc++;
-        s.words = realloc(s.words, s.wc * sizeof(t_word));
-        s.words[s.wc - 1].word = calloc(sizeof(char), len + 1);
-        s.words[s.wc - 1].len = len;
-        strncpy(s.words[s.wc - 1].word, word, len);
-    }
 
-    len = 1;
-    f = 0;
-    for (int i = s.wc - 2; i >= 0; --i)
+    word = strtok(str, ",;:-.!? ");
+    if (strlen(word) > 16)
+        return 3;
+
+    while (word != NULL)
     {
-        if (strcmp(s.words[i].word, s.words[s.wc - 1].word))
+        while (word[i])
         {
-            if (len)
-            {
-                --len;
-                printf("Result: ");
-                f = 1;
-            }
-            if (f == 1)
-            {
-                for (size_t j = 0; j < s.words[i].len; ++j)
-                    if (strchr(s.words[i].word, s.words[i].word[j]) == s.words[i].word + j)
-                        printf("%c", s.words[i].word[j]);
-
-                if (i)
-                    printf(" ");
-            }
+            words[len][i] = word[i];
+            i++;
         }
+        words[len][i] = '\0';
+
+        len_words[len] = strlen(word);
+        len++;
+
+        i = 0;
+        word = strtok(NULL, ",;:-.!? ");
     }
-    for (size_t i = 0; i < s.wc; ++i)
-        free(s.words[i].word);
-    free(s.words);
-    if (f == 0)
-        return 1;
-    if (!len)
-        printf("\n");
+
+    for (i = len - 2; i != -1; i--)
+    {
+        if (strcmp(words[i], words[len-1]))
+        {
+            for (int j = 0; j != len_words[i]; j++)
+            {
+                char *index = strchr(words[i], words[i][j]);
+                symbol[j] = *index;
+                for (int k = 0; k != j; k++)
+                    if (symbol[k] == symbol[j])
+                        flag = 0;
+                if (flag)
+                {
+                    new_str[len_new] = words[i][j];
+                    len_new++;
+                }
+                flag = 1;
+            }
+            new_str[len_new] = ' ';
+            len_new++;
+        }
+
+    }
+    if (len_new == 0)
+        return -1;
+    printf("Result: %s\n", new_str);
+
     return 0;
 }
+
 
