@@ -14,7 +14,6 @@ int create_fst_str(char fst_str[][17], char *lens_str, char *res)
             continue;
 
         char word[len + 1];
-
         for (i = 0; i != len; i++)
             word[i] = words[i];
         word[i] = '\0';
