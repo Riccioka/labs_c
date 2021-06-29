@@ -1,34 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "my_strtok.h"
-#include "strcmp_mod.h"
-#include "remove_word_from_str.h"
+#include "working_with_words.h"
+#include "create_fst_str.h"
+
+#define INVALID_STRING -1
+#define OK 0
 
 int main(void)
 {
-    char str[256];
-    char find[256];
+    char str[256], find[256];
+    char fst_str[256][17], lens_str[256];
     char *res = (char*)str;
-    char *word = NULL;
-    int len = 0;
-
+    int i = 0;
 
     if (scanf("%256[^\n]%*c", str) != 1)
-        return 1;
+        return INVALID_STRING;
     if (scanf("%256[^\n]%*c", find) != 1)
-        return 1;
-    printf("Result: ");
-    while ((word = my_strtok(&res, ",;:-.!? ", &len)))
-    {
-        if (!len)
-            continue;
-        char *word_copy = calloc(sizeof(char), len + 1);
-        strncpy(word_copy, word, len);
-        printf("%s %s\n", word_copy, (strcmp_mod(find, word_copy, len) ? "yes" : "no"));
-        remove_word_from_str(res, word, len);
-        free(word_copy);
-    }
+        return INVALID_STRING;
 
-    return 0;
+    int len_fst = create_fst_str(fst_str, lens_str, res);
+
+    printf("Result: ");
+
+    for (i = 0; i < len_fst; i++)
+        printf("%s %s\n", fst_str[i], (strcmp_mod(find, fst_str[i], lens_str[i]) ? "yes" : "no"));
+
+    return OK;
 }

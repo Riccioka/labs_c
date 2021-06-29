@@ -1,10 +1,6 @@
 #include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
 #include "my_strlen.h"
-#include "is_valid_ip.h"
+#include "validation_check.h"
 
 int main(void)
 {

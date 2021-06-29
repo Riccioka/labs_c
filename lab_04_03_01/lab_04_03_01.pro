@@ -4,10 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        create_words.c \
         main.c \
-        my_strlen.c \
-        my_strtok.c
+        transformation.c
 
 HEADERS += \
-    my_strlen.h \
-    my_strtok.h
+    create_words.h \
+    errors.h \
+    transformation.h
