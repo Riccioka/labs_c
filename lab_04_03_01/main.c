@@ -32,7 +32,7 @@ int main(void)
 
     printf("Result: %s\n", new_str);
 
-    return 0;
+    return OK;
 }
 
 

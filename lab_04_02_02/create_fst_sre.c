@@ -1,3 +1,8 @@
+#include <string.h>
+
+#include "my_strtok.h"
+#include "working_with_words.h"
+
 int create_fst_str(char fst_str[][17], char *lens_str, char *res)
 {
     char *words = NULL;
