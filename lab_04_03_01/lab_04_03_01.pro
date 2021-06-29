@@ -4,6 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.c
+        create_words.c \
+        main.c \
+        transformation.c
 
-HEADERS +=
+HEADERS += \
+    create_words.h \
+    errors.h \
+    transformation.h
