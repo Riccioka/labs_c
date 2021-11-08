@@ -7,95 +7,118 @@
 int count_nums_in_file(FILE *in_file, int *nums_in_file)
 {
     int read_code = 0;
-    int error = 0;
-
     int nums_read = 0;
-    int cur_num;
+    int cur_num = 0;
+    long pos = 0;
 
     fseek(in_file, 0, SEEK_END);
-    long pos = ftell(in_file);
+    pos = ftell(in_file);
     if (pos <= 0)
-        error = INCORRECT_INPUT;
-    fseek(in_file, 0, 0);
+        return INCORRECT_INPUT;
+    fseek(in_file, 0, SEEK_SET);
 
-    while ((read_code = fscanf(in_file, "%d", &cur_num)) != EOF && error == 0)
+    while ((read_code = fscanf(in_file, "%d", &cur_num)) != EOF)
     {
-        if (error == 0)
-        {
-            if (read_code == 1)
-                nums_read++;
-            else if (read_code == 0)
-                error = INCORRECT_INPUT;
-        }
+        if (read_code == 1)
+            nums_read++;
+        else if (read_code == 0)
+            return INCORRECT_INPUT;
     }
 
-    if (nums_read == 0 && error == EOF)
-        error = INCORRECT_INPUT;
+    if (nums_read == 0 && read_code == EOF)
+        return INCORRECT_INPUT;
 
-    if (error == 0)
-        *nums_in_file = nums_read;
-
+    *nums_in_file = nums_read;
     fseek(in_file, 0L, SEEK_SET);
 
+    if (nums_read == 1)
+        return INCORRECT_INPUT;
+    return 0;
+}
+
+int get_elements(FILE *in_file)
+{
+    int error = 0, num = 0;
+    while (fscanf(in_file, "%d", &num))
+        num++;
+    if (feof(in_file) && num != 0)
+        error = num;
+    else
+        error = INCORRECT_INPUT;
+    return error;
+}
+
+int read_array(char *filename, int **arr, int **end_arr)
+{
+    int error = 0;
+    FILE *in_file = fopen(filename, "r");
+    if (in_file == NULL)
+        return INCORRECT_INPUT;
+    error = get_elements(in_file);
+
+    rewind(in_file);
+
+    if (error >= 1)
+    {
+        int n = error;
+        error = 0;
+        *arr = malloc(n * sizeof(int));
+        *(end_arr) = *arr + n;
+        if (*arr == NULL)
+            error = INCORRECT_INPUT;
+        else
+            for (int *ptr = *arr; ptr != *end_arr; ptr++)
+                fscanf(in_file, "%d", ptr);
+    }
+    fclose(in_file);
     return error;
 }
 
 int read_from_file_to_arr(FILE *in_file, int *pb, int *pe)
 {
-    int error = 0;
-    int cur_num;
-    for (int *i = pb; i != pe; i++)
+    while (pb != pe)
     {
-        if (error == 0)
-        {
-            if (fscanf(in_file, "%d", &cur_num) != 1)
-                error = INCORRECT_INPUT;
-            if (error == 0)
-                *i = cur_num;
-        }
+        if (fscanf(in_file, "%d", pb) != 1)
+            return INCORRECT_INPUT;
+        ++pb;
     }
-
-    return error;
+    return 0;
 }
 
 
 int check_uniq(int *pb, int *pe)
 {
-    int *cur_elem = pb;
     int same_flag = 0;
-    while (cur_elem != pe && same_flag == 0)
+
+    while (pb != pe && same_flag == 0)
     {
         int *cur_iter = pb;
-        while (cur_iter != pe && same_flag == 0)
+
+        while (cur_iter != pe && !same_flag)
         {
-            if (cur_iter != cur_elem && *cur_iter == *cur_elem)
+            if (cur_iter != pb && *cur_iter == *pb)
                 same_flag = 1;
             cur_iter++;
         }
-
-        cur_elem++;
+        ++pb;
     }
-    if (same_flag == 1)
-        return -1;
-    else
-        return 0;
+
+    return -same_flag;
 }
 
 
 int write_array_to_file(FILE *out_file, int *pb, int *pe)
 {
-    int error_code = 0;
+    if (!out_file)
+        return INCORRECT_FILE_POINTER;
 
-    if (out_file == NULL)
-        error_code = INCORRECT_FILE_POINTER;
+    while (pb != pe)
+    {
+        fprintf(out_file, "%d", *pb);
+        ++pb;
+        if (pb != pe)
+            fprintf(out_file, "%c", '\n');
+    }
 
-    if (error_code == 0)
-        for (int *i = pb; i != pe; i++)
-        {
-            fprintf(out_file, "%d", *i);
-            if ((i + 1) != pe)
-                fprintf(out_file, "%c", '\n');
-        }
-
-    return error_code;
+    return 0;
 }
