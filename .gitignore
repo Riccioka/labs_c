@@ -1,0 +1,9 @@
+*.exe
+*.out
+*.o
+*.pch
+*.gch
+
+.idea/*.*
+lab_07_01_03/.idea/*.*
+lab_07_01_03/src/.idea/*.*
